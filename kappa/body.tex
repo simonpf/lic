@@ -2,14 +2,171 @@
 
 \chapter{Introduction}
 
-\lipsum[10-20]  % fill-in text for this template
+Clouds and precipitation affect live on Earth in multiple ways and on multiple
+time scales. On short time scales, weather affects human activity, potentially
+posing threats to transport, agriculture and lives. On longer time scales,
+precipitation patterns shape ecosystems and societies while clouds influence the
+global climate system through their interaction with the incoming and outgoing
+electromagnetic radiation.
 
-Random citations: \cite{Amilhastre2002,Sinz2003,Astesana2010a,Astesana2010b}.
+As historical evidence suggests, understanding and predicting weather and climate
+has been a human endeavor dating back at least to the formation of the first
+settled communities during the agricultural revolution. This is not surprising
+considering the dependence of agricultural activity on benign weather patterns.
+Today, this dependency has likely even increased as more and more branches of
+human activity rely on the availability of reliable weather forecasts.
 
-This thesis consists of two parts. Part I is a general introduction to the field and puts the appended papers into context. Part II contains the appended papers.
+As the dramatic effects of anthropogenic climate change become more and more
+apparent \cite{coronese19, grinsted19}, the importance of understanding and
+predicting the Earth's changing climate is indisputable. The predicted heating
+under all but the lowest emission scenario is likely to exceed $2\ \unit{^\circ
+  C}$ by the end of the century \cite{collins13}. With this, global mean surface
+air temperature will become higher than what has can be estimated from
+reconstructions of past climate \cite{delmotte13}.This only underlines the
+importance of a thorough understanding of the processes that govern climate
+change on Earth.
 
+The subject of this thesis are observational methods for clouds using microwave
+sensors. These observations provide valuable information on the state of the
+atmosphere for weather prediction as well as a basis for the evaluation and
+improvement of climate models. The remainder of this introduction aims to give
+an overview over the relevance of observations of clouds for both weather and
+climate prediction and closes with a discussion of currently available
+observation methods. The following chapters then provide an introduction to
+physical and mathematical principles upon which these observations are founded.
+Chapter~\ref{ch:clouds} provides an introduction to cloud formation and
+establishes what properties of clouds can be observed.
+Chapter~\ref{ch:radiative_transfer} introduces the theory of radiative transfer
+which describes how radiation interact with clouds and which is necessary to
+understand the observable effects that clouds have on microwave radiation.
+Finally, Chapter~\ref{ch:inverse_proplems} introduces the mathematical methods
+that are used to infer clouds properties from observations of clouds.
 
+A brief remark on the terminology: Clouds and precipitation consist of particles
+formed by frozen or liquid water. Hydrometeor is used in the following as a
+collective term to denote either of these forms. Moreover, the adopted viewpoint
+is that precipitation is a byproduct of cloud formation and therefore the terms
+'observations of clouds' or 'cloud observations' are used to denote observations
+of both clouds and precipitation.
 
+\section{The role of clouds and precipitation in numerical weather prediction}
+
+Clouds and precipitation are responsible for many of the phenomena that are
+considered as weather. It should therefore be clear that their accurate
+representation in numerical weather prediction (NWP) models is essential for
+reliable forecasts. But clouds, more specifically observations of clouds, can
+impact weather forecasts in another, more nuanced way.
+
+Modern forecasting systems make use of satellite observations to determine an
+optimal initial state from which a forecast run is started. This process is
+called data assimilation. In a clear atmosphere, satellite observations from the
+infrared and microwave domain can provide direct information on the temperature
+and humidity field of the atmosphere. When observations are assimilated over
+multiple time steps, sequences of observations can provide additional
+information on wind speeds \cite{geer18}. In a cloudy atmosphere, satellite
+observations still provide information on temperature and humidity, but in
+addition to that the presence of clouds can provide information on the dynamical
+state of the atmosphere.
+
+Clouds form where warm and moist air is transported upwards in the atmosphere
+by convection. Cloud formation thus acts as a tracer of atmospheric dynamics
+that can provide valuable information on the state of the atmosphere. Indeed,
+owing to recent developments in data assimilation methodology, microwave
+observations sensitive to humidity and clouds have become a main contributor
+to short-term forecast skill \cite{geer17}.
+
+\section{The role of clouds and precipitation in the climate system}
+
+The main impact of clouds on the climate system is through their interaction
+with the incoming solar radiation and the outgoing long-wave radiation, which
+determines the Earth's energy Budget. In addition to that, clouds form a part
+of the global hydrological cycle in which they deliver water from the atmosphere
+to the surface of the Earth.
+
+\subsection{The global energy budget}
+
+The short-wave radiation emitted by the sun that reaches the earth is the energy
+source that drives the climate system. To remain at a stable temperature the
+Earth needs to emit the same amount of incoming energy in the form of outgoing
+long-wave radiation. From an energy balance perspective, clouds have two
+opposing effects on the global energy budget. The first one is a cooling effect
+caused by the reflection of incoming short-wave radiation back to space. The
+second effect is a warming effect caused by the blocking of outgoing long-wave
+radiation that would be emitted to space in a cloud-free atmosphere. Overall,
+the cooling effect of clouds prevails, leading to net cooling effect of clouds.
+
+\subsection{Cloud radiative effect and climate sensitivity}
+
+Since both the cooling and warming effects of clouds are relatively strong,
+changes in cloud properties or occurence may potentially cause significant
+feedbacks in a changing climate. These effects, however, are difficult to
+quantify. This is because the strength of their interaction with radiation
+depends on where clouds form in the atmosphere as well as on their microphysical
+properties such as particle phase and size distribution. Furthermore, the
+formation of clouds involves size-ranges beginning at the nanometer scale of
+aerosol particles on which cloud drops form up to several thousands of
+kilometers, which is the size of synoptic-scale cyclones. This wide range of
+size-scales is very difficult to represent in global climate models, which is
+why they have to rely on approximate representations of cloud processes.
+
+The cloud feedback is indeed the most uncertain feedback affecting the global
+climate. It therefore contributes significantly to the spread in predicted
+changes in global mean surface temperature observed between different GCMs.
+
+\section{Global observations of clouds}
+
+The two previous sections described the relevance of cloud observations for
+weather and climate applications. This section provides a brief review of
+common, global observation methods for clouds. The focus here is put on
+satellite-based observations since these are the only ones that can provide
+observations at global  scales and temporal resolutions. 
+
+\subsection{Frequency domains}
+
+Hydrometeors can be observed from the optical domain down to microwave frequencies
+around $10\ \unit{GHz}$. The strength of their interaction with radiation is determined
+by the relation of their size to the wavelength of the radiation, which is strongest
+when the wavelength is close to the particle size.
+
+In the optical and infrared, cloud droplets and ice crystals are large compared
+to the wavelength of the radiation, so the interaction with a single particle is
+not very strong. However, the large number concentrations of these particles
+make clouds opaque at these wavelengths. This has important implications for
+cloud observations using optical or infrared radiation. Since the cloud is
+opaque the observed radiation is sensitive only to the upper-most regions of the
+cloud. Observational techniques based on these wavelength therefore have no
+direct sensitivity to precipitation and large parts of the water masses in thick
+clouds.
+
+At microwave frequencies, the wavelength of the radiation is much larger than
+the size of the hydrometeors rendering microwave radiation insensitive to all
+but the largest hydrometeors. The advantage of microwave observation is that
+they can directly sense precipitation, which occurs in clouds that are too thick
+for optical or infrared radiation to penetrate.
+
+A considerable gap in observation wavelengths between the highest microwave
+frequencies around $2\ \unit{mm}$ and the lowest infrared observations at
+around $15\ \unit{\mu m}$. This gap is due in part to the strength of the
+water vapor continuum in this region of the electromagnetic spectrum, which 
+makes the troposphere invisible from space for large parts of it. Another reason
+are technological difficulties in the development of sensors for these wavelengths.
+
+\subsection{A look into the future}
+
+Nonetheless, progress is underway to close this frequency gap. The Ice cloud
+imager (ICI) will be flown on the upcoming second generation of European operational
+meteorological satellites (Metop-SG) and will provide observations of the atmosphere
+at frequencies up to $664\ \unit{GHz}$ corresponding to a wavelength of less than
+$0.5\ \unit{mm}$. These observations at sub-millimeter wavelength will considerably
+increase the sensitivity to small particles and lower hydrometeor masses.
+
+For the observations provided by ICI to be useful the development of additional
+know-how and methodology is required. This is mainly because the microphysical
+properties of ice, i.e. their shape and size affect the observations at these
+high microwave frequencies. The development of methods to infer cloud properties
+such as the mass density of hydrometeors from these observations thus requires
+consideration of these microphysical properties. These developments are also the main
+topic for the PhD project that lead to this thesis.
 
 %
 %   .--~*teu.
@@ -28,26 +185,417 @@ This thesis consists of two parts. Part I is a general introduction to the field
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Background and Challenges\label{ch:bg}}
+\chapter{The physics of clouds and precipitation}
+\label{ch:clouds}
 
-\lipsum[5]
+Clouds consist of large numbers of water droplets and ice crystals that are
+suspended in the air. When these drops grow sufficiently in mass they
+eventually fall out of the cloud to form precipitation. This chapter gives an
+overview over the processes that lead to the formation of clouds and ultimately
+precipitation. Moreover, the typical properties of the hydrometeors that make up
+clouds and precipitation are presented. This knowledge is required to understand
+the capabilities and limitations of the observational approaches in the remainder
+of this thesis.
+
+It is common to classify cloud types according to their form which is
+representative of the dynamical context in which they form. Such a
+classificlation is of minor relevance for the development of observation methods
+of clouds and is therefore not presented here. Instead, warm and cold clouds are
+distinguished. Warm clouds exist below the $0\ \unit{^\circ C}$ isotherm and
+consist solely of liquid water droplets. Cold clouds extend to above the
+$0\ \unit{^\circ C}$ isotherm consist at least in part of ice particles.
+Although, typically, the liquid phase is present also in cold clouds, this
+classification allows the slightly different formation processes of liquid and
+frozen hydrometeors to be discussed separately. Moreover, also the signature of
+liquid and frozen hydrometeors in remote sensing observations are farily, which
+is why observation methods for different types of hydrometeors are generally
+considered separtely.
+
+This chapter begins with an introduction to phase transitions and how they are
+initiated to form clouds. Then the formation of cloud is discusses separately
+for warm and cold clouds. The chapter closes with a brief discussion of the general
+properties of precipitation.
+
+\section{Principles of cloud formation}
+
+Cloud hydrometeors form when the water vapor contained in the air undergoes a
+phase change from the gas phase to the liquid or frozen phase. These processes
+are denoted as condensation, for the change from the gas to the liquid phase,
+and deposition, for the change from the gas to the ice phase. Their inverse
+processes, i.e. the change from water in the liquid respectively ice phase to
+the gas phase are denoted as evaporation and resublimation.
+
+A necessary condition for condensation to occur is that the air is
+supersaturated with respect to liquid water. This means that the partial
+pressure of water vapor exceeds the saturation vapor pressure with respect to
+liquid water. Similarly, supersaturation with respect to the ice phase is
+required for the formation of ice particles. The supersaturation required for
+the formation of clouds is reached when comparably warm and moist air is lifted
+in the atmosphere. The resulting adiabatic cooling of the air leads to a
+decrease in the saturation vapor pressures of water and ice and the air eventually
+becomes supersaturated.
+
+When water vapor reaches supersaturation with respect to either the liquid or
+ice phase it enters a metastable state. This means that although the liquid
+state is energetically favorable the transition is inhibited by an energy
+barrier. Due to the random nature of the movements of water vapor molecules,
+some of them eventually overcome the energy barrier by forming clusters of the
+new stable phase inside the metastable gas phase. In the context of phase
+transitions, this process of forming clusters of the stable state inside the
+metastable parent state is referred to as nucleation. More specifically, two
+types of nucleation are distinguished: Homogeneous nucleation refers to the
+process of forming a new, pure cluster of molecules in the stable phase whereas
+heterogeneous nucleation refers to the formation of a cluster of molecules in
+the stable phase on or around a cluster of a different molecular species.
+
+After a sufficiently large nucleus has formed, it will grow due
+to the condensation or deposition of water molecules as long as
+its environment is supersaturated with respect to its phase.
+Eventually, differences in fall velocities between particles
+of different sizes will cause the particles to collide and stick
+together which further accelerates particle growth.
+
+Due to the different molecular properties of water and ice, slightly different
+processes are involved in the formation of liquid cloud droplets and ice
+particles, respectively. These together with the corresponding growth mechanism
+are explained in more detail in the following two sections.
+
+\section{Warm clouds}
+
+As has been mentioned above, warm clouds are clouds that do not extend above
+the $0\ \unit{^\circ C}$ isotherm and consist solely of liquid cloud droplets.
+
+\subsection{Formation}
+
+The formation of cloud droplets by homogeneous nucleation is highly unlikely due
+to the height of the energy barrier separating the metastable gas phase from the
+liquid phase. Instead, cloud droplets form through the activation of cloud
+condensation nuclei (CCN). CCN are soluble aerosol particles, which take up
+water molecules and grow even in environments that are not super-saturated. The
+droplets which are formed by hygroscopic growth of aerosol particles are called
+solution droplets. For sufficiently high supersaturations, the energy barrier
+for the transition to larger cloud drops vanishes leading to immediate
+condensation of all water molecules onto the droplet that are available in its
+surroundings. The theory describing the activation of CCN and their growth
+to cloud droplets is know as Köhler theory \cite{kohler36}.
+
+\subsection{Growth processes}
+
+The condensation of water molecules onto the newly formed cloud causes a
+gradient in the concentration of water molecules initiating  a diffusive flow
+of water vapor towards the droplet. The water vapor flowing towards the droplet
+condenses onto it making it grow in size and mass. This process is called
+growth by diffusion and condensation. The rate of diffusional growth decreases
+with increasing droplet radius. From sizes around $10$ or $20\ \unit{\mu m}$ and
+up therefore another growth process takes over.
+
+When the cloud droplets have grown sufficiently in mass, differences in fall
+speed between cloud droplets of different size as well as turbulence may cause
+droplets to collide. If these droplets coalesce the resulting droplet will have
+grown compared to the two colliding droplets. The resulting, larger particle
+will fall even faster down through the cloud. Heavier particles typically are
+also more efficient in collecting other cloud droplets. This illustrates why
+collision-coalescence is a very efficient growth process. Only
+collision-coalescence can explain the onset of rain only 20-30 minutes after the
+formation of a cumulus cloud which can be observed in the atmosphere.
+
+\section{Cold clouds}
+
+Cold clouds extend to above $0\ \unit{^\circ C}$ isotherm and are characterized
+by the presence of frozen hydrometeors.
 
 
-\section{Some section}
+\subsection{Formation}
 
-\lipsum[3]
+In contrast to liquid droplets, both homogeneous and heterogeneous nucleation
+are relevant for the formation of ice particles in the atmosphere. In agreement
+with Oswald's rule of stages, homogeneous nucleation occurs only through the liquid
+phase due to the prohibitively high energy barrier associated with the formation
+of an ice nucleus directly from the vapor phase. This means that ice particles
+are formed by homogeneous nucleation through the formation of an ice nucleus
+inside an existing cloud or solution droplet and subsequent complete freezing of
+the droplet. Nonetheless, the energy barrier for homogeneous nucleation of ice
+particles remains sufficiently high so that these processes occur only at
+temperatures below $-36\ \unit{^\circ C}$ for solution droplets and
+$-38\ \unit{^\circ C}$ for cloud droplets.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.8\textwidth]{kappa/images/supervisor}
-\caption{An example of a supervisor.\label{fig:kappa-sup}}
-\end{figure}
+Heterogeneous nucleation of ice particles involves aerosol particles, so called
+ice nucleating particles (INP), that provide a surface onto which the water
+molecules can form aggregates with ice-like structure. Heterogeneous nucleation
+is thought to occur both indirectly through the liquid phase as well as directly
+from the gas to the ice phase. Heterogeneous freezing, that is heterogeneous
+nucleation from the liquid phase, occurs when a cloud droplet or a solution
+droplet comes in contact with an INP upon which the droplet freezes.
+Heterogeneous freezing may also occur when water vapor condenses directly onto
+the INP followed by freezing of the liquid nucleus formed on the INP.
 
-\lipsum[10-15]
+Alternatively, heterogeneous nucleation may occur directly from the vapor phase
+by deposition of water molecules directly onto the INP. It is, however, still
+debated whether this process really occurs directly from the vapor phase or whether
+an intermediate liquid nucleus is formed on the INP.
+
+\subsection{Growth processes}
+
+In principle, the growth processes for ice particles are the same as for liquid
+droplets. However, due the potential coexistence of particles in the liquid
+phase these processes have slightly different characteristics as will be
+explained below.
+
+Due to the lower saturation vapor pressure of ice compared to that of water, a
+newly-formed ice nucleus experiences a much higher ratio of supersaturation then
+a cloud droplet would. Because of this, the diffusional growth of ice crystals
+is much faster than that for cloud droplets. The rapid growth of the ice
+particles will deplete the surrounding air of water vapor. This depletion may
+cause the environment to become sub-saturated with respect to water but
+saturated with respect to ice. If this is the case, potentially present supercooled
+cloud droplets evaporate and their molecules deposit onto the ice particles. This is
+known as the Wegener-Bergeron-Findeisen process.
+
+Similar as for cloud droplets, an ice crystal that grows sufficiently in mass
+eventually starts to sediment. Size differences between different particles as
+well as turbulence may cause particles to collide and potentially stick together
+to form larger particles thus initiating growth by accretion. Accretion is the
+general term for the growth of two hydrometeors caused by a collision and
+resulting in permanent union of the two particles. For ice particles growth by
+accretion can happen in two ways: The collision of two ice particles, called
+aggregation, or the collision of an ice particle with a liquid particle which
+freezes upon contact, called riming. Aggregation produces aggregates of
+snow crystals that, if they don't melt, fall to the ground in the form of snow.
+Particles produced by riming a known as graupel, when their diameter remains below
+$2.5\ \unit{mm}$, and hail for sizes above that.
+
+\subsection{Ice habits}
+
+Ice crystals exhibit a fascinating range of different forms. Their crystal
+structure depends on the thermodynamic conditions of their formation. This is
+due to the dependence of the surface tension on the temperature and
+supersaturation as well as the tendency of the shape to minimize this surface
+tension.
+
+A common grouping of ice particles is into pristine ice crystals, aggregates and
+rimed particles. Common shapes for ice crystals are plates and columns. But also
+other shapes such as dendrites, stellar plates or needles can be observed. Snow
+aggregates are usually made up of 10 to 100 or more single crystals. They often
+consist of dendrites and thins plates. Finally, rimed particles are typically
+spherical with densities slightly lower than that of solid ice due air
+inclusions.
+
+\section{Precipitation}
 
 
 
-%   .x~~"*Weu.
+
+\chapter{Microwave radiative transfer in the atmosphere}
+\label{ch:radiative_transfer}
+
+The underlying physical mechanism that allows cloud and precipitation to be
+remotely sensed is their interaction with electromagnetic radiation that can be
+measured from afar using suitable detectors. These interactions are described by
+the theory of radiative transfer. Since this theory is essential for the
+understanding and development of retrieval methods, this section provides an
+introduction to the radiative transfer of microwaves in the atmosphere.
+Particular focus is put on the interaction of radiation with clouds. This
+presentation is mostly based on the more comprehensive texts by
+\textcite{thomas02, mischenko02, wallace06}.
+
+\section{The theory of radiative transfer}
+
+Radiative transfer theory describes radiation as monochromatic beams that
+transport radiant energy through the atmosphere. One of the fundamental
+quantities of the theory is the spectral intensity $I_\nu$ defined as the rate
+at which a beam of angular extent $d\omega$ propagating into direction
+$\hat{\vec{n}}$ of frequency $\nu$ transports energy through an infinitesimal
+area $dA$:
+\begin{align}\label{eq:spectral_intensity}
+  I_\nu = \frac{d^5E}{\cos(\theta) dA\ dt\ d\omega\ d\nu}
+\end{align}
+In addition to that, a monochromatic beam of radiation has a polarization state,
+which describes how the energy flux is split up between the two components of
+the electric field perpendicular to the propagation direction as well as their
+respective phase. The intensity of a beam and its polarization state are
+described by the stokes vector
+\begin{align}
+  \vec{I} &= \left [ \begin{array}{c}I_\nu \\ D \\ Q \\ U\end{array} \right ]
+\end{align}
+The four components $I, D, Q$ and $U$ of the Stokes vector fully characterize an
+electromagnetic plane wave to the extent it that it can be measured using
+traditional detectors. This means that all its measurable quantities can be derived from the
+corresponding stokes vector.
+
+The stokes vector can be directly related to the
+electromagnetic field strength of an electromagnetic plane wave allowing it to
+be derived from the more fundamental theory of electromagnetism. The key
+advantage of radiative transfer theory, however, is that it allows a simplified
+treatment of the problems relevant to atmospheric remote sensing which are too
+complex to be solved by direct application of the laws of electrodynamics.
+
+\subsection{Interactions with matter}
+
+The Stokes vector provides a full description of the radiation measured by any
+remote sensing instrument. To model the radiation reaching the detector, a
+suitable description how this radiation is created as well as how it changes as
+it propagates through the atmosphere is required. A common approach in radiative
+transfer theory is to distinguish three fundamental types of such interactions
+of radiation with matter: The emission of radiation, its absorption, and the
+scattering of absorption away from its propagation path.
+
+\subsubsection{Emission}
+
+At temperatures above absolute zero, all matter emits radiation through the
+process of thermal emission. Thermal emission occurs when matter transitions
+from a quantum mechanical state of higher energy to one of lower energy which
+causes the surplus of energy to be emitted in the form of radiation. When
+considering radiation in the lower atmosphere, the relevant emitters of
+radiation are the ocean or land surface as well as gas molecules or suspended
+particles.
+
+A fundamental concept for the description of emission is that of a black body.
+A black body is a piece of matter that absorbs all incoming radiation. At a
+given temperature $T$, the emission of a black body is isotropic and polarized.
+Its spectral intensity is given by Planck's law:
+\begin{align}
+  B_\nu(\nu, T) &= \frac{2h\nu^3}{c^2}\frac{1}{\exp ( \frac{h\nu}{k_B T} )- 1}
+\end{align}
+where $c$ is the speed of light in the medium, $h$ is the Planck constant and
+$k_B$ is the Boltzmann constant. The stokes vector describing the emission from
+a black body is given by
+\begin{align}
+  \vec{I} &= \left [ \begin{array}{c}B_\nu \\ 0 \\ 0 \\ 0\end{array} \right ]
+\end{align}
+
+The concept of the black body is used to define the emission from other forms
+of matter using the emissivity vector $\vec{\epsilon}$:
+\begin{align}
+ \vec{I} &= \vec{\epsilon} \cdot B_\nu
+\end{align}
+The main difference between the treatment of emission from a volume compared
+to that of a surface is the unit of the emission vector $\vec{\epsilon}$. For
+a volume, it is defined per unit length of the path through the volume, while
+for a surface this is not necessary.
+
+Due to the distinct orientation that surfaces have with respect to the viewing
+geometry, the emissivity vector generally depends on the incidence angle. For
+particles this is generally also the case, but since most particles in the
+atmosphere are randomly oriented it is often neglected. Although black-body
+radiation is unpolarized, emission from general emitters can be polarized. An
+important example is the ocean surface, which is highly polarized around the
+Brewster angle at $53^\circ$.
+
+\subsubsection{Absorption}
+
+Absorption refers to the process of radiation being converted into internal
+energy of the matter it interacts with. Mathematically, absorption is described
+by an absorption vector $\vec{\alpha}$, defined as the fraction of the incoming
+radiation that is absorbed along an infinitesimal distance $ds$ along the
+propagation path:
+\begin{align}
+\vec{I}_\text{absorbed} &= (\vec{\alpha} \cdot\ ds) \odot \vec{I}
+\end{align}
+Here $\odot$ denotes the element-wise product of the absorption vector and
+the stokes vector $\vec{I}$ of the incoming radiation. Absorption may be
+understood as the inverse process of thermal emission. Formally, this is
+expressed by Kirhoff's  law of radiation
+\begin{align}
+  \vec{\alpha} &= \vec{\epsilon}
+\end{align}
+This law is applicable to all matter in the atmosphere given that it is in a
+state of local thermal equilibrium (LTE). LTE occurs when the density of matter
+is sufficiently high so that the population frequencies of energy states above
+the ground state are determined by thermal collisions rather than the absorption
+of radiation. This decouples the emission of radiation from the radiation field,
+allowing the simplified treatment of matter as thermal emitters with the
+emission rates independent of the radiation field. LTE is a valid assumption for
+radiative transfer in the lower atmosphere.
+
+\subsubsection{Scattering}
+
+When a beam of radiation impinges upon a particle, their interaction may cause a
+deviation of parts of the beam from the original propagation path. To first
+order, scattering decreases the intensity of the beam. This particular process
+is referred to as single scattering. As it propagates through the atmosphere,
+the intensity of a beam is decreased by the effects of absorption and single
+scattering. The combination of these two processes is referred to as
+attenuation.
+
+However, as the rate of scattering increases, also the effect of multiple
+scattering has to be taken into account. Multiple scattering occurs when energy
+from other beams scattered into the line of sight causes an increase in the
+intensity of the considered beam.
+
+Mathematically, the scattering of a beam of light propagating in direction
+$\vec{n}$ into the direction $\vec{\hat{n}}$ is described by the phase
+matrix $\mat{Z}(\vec{n}, \vec{\hat{n}})$:
+\begin{align}
+  \vec{I}_\text{scattered}(\vec{\hat{n}}) &= \mat{Z}(\vec{\hat{n}}, \vec{n}) \vec{I}(\vec{n})
+\end{align}
+The combined, attenuating effects of scattering and absorption are give by
+the attenuation matrix $\mat{K}$, given by the sum of the absorption vector
+$\vec{a}$ and the fraction of radiation scattered away from the propagation
+path:
+\begin{align}
+  \vec{K} &= \vec{\alpha} + \int_{\vec{\hat{n}}} d\vec{\hat{n}}\ \mat{Z}(\vec{\hat{n}}, \vec{n})
+\end{align}
+
+\subsection{The radiative transfer equation}
+
+The previous section introduced the fundamental interactions of radiation
+with matter and how they are described mathematically in radiative transfer
+theory. Combining the three processes of emission, absorption and scattering,
+the change that a beam undergoes as it travels a distance $ds$ along its
+propagation path through the atmosphere is described the vectorized radiative
+transfer equation (VRTE):
+\begin{align}\label{eq:vrte}
+  \frac{d\vec{I}}{ds} &=
+  -\mat{K}\vec{I} + \vec{\alpha} \cdot B_\nu(T) + \int_{\Omega} d\omega \ \mathbf{Z}(\vec{n}, \vec{\hat{n}}) I(\vec{\hat{n}}).
+  \end{align}
+By solving Equation~(\ref{eq:vrte}) the radiation field for an arbitrary atmosphere can
+be computed. What is required for this are the values of temperature, absorption vector
+$\vec{\alpha}$ and phase matrices $\mat{Z}$ throughout the atmosphere as well as a
+suitable method for solving the radiative transfer equation. The values of $\vec{\alpha}$
+and $\mat{Z}$ describe how a specific volume element of the atmosphere absorbs and scatters
+radiation. Their values therefore depend on the concentrations of gases and particulate
+matter in the atmosphere.
+
+Approximate values of $\vec{\alpha}$ and $\mat{Z}$ for different materials in
+the atmosphere can be measured experimentally or in special cases even derived
+from first principles. Typically they depend on local properties of the
+atmosphere such as temperature, pressure or concentration of gases or particles.
+Numerical models for $\vec{\alpha}$ and $\mat{Z}$ together with the VRTE thus
+allow the radiation field observed by remote sensing intruments to be related to
+the state of the atmosphere. Together with the methods described in
+Section~\ref{ch:inverse_problems}, this forms the basis of atmospheric
+remote sensing.
+
+\subsection{Long-wave radiative transfer in the atmosphere}
+
+This thesis focuses on observations of the atmosphere at microwave and sub-millimeter
+wavelengths. The specific properties of this frequency domain allow for a number
+of simplifications, that can greatly simplify the solution of the VRTE in
+the atmosphere.
+
+At microwave frequencies, all relevant emission of radiation is due to thermal
+emission from matter in the atmosphere. Emission from the sun is irrelevant at
+these wavelengths. Furthermore, due to the long wavelengths of the radiation,
+scattering by molecules of gases can be neglected. In this case, the integral in
+Eq.~(\ref{eq:vrte}) disappears and it can be solved efficiently by integration
+along the line of sight.
+
+In the presence of clouds, solving the radiative transfer equation becomes
+more complicated and computationally more demanding as it requires solving
+for the whole radiation field instead of solving the VRTE along a single
+beam.
+
+\section{Microwave observations of clouds and precipitation} 
+
+Clouds and precipitation can be observed at microwave frequencies using
+active as well as passive observation techniques.
+
+\subsection{Radar observations}
+
+
+\subsection{Passive observations}
+
+
 %  d8Nu.  9888c
 %  88888  98888
 %  "***"  9888%
@@ -61,7 +609,103 @@ This thesis consists of two parts. Part I is a general introduction to the field
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Methods\label{ch:methods}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Inverse problems}
+\label{ch:inverse_problems}
 
-\lipsum
+The previous chapter introduced the general properties of clouds and  their
+effect on electromagnetic radiation which can be used to observe them. This
+chapter describes the mathematical methods that can be used infer properties
+of clouds from their signatures in the observed electromagnetic radiation.
+Mathematically, this problem can be formulated as an inverse problem. This is
+because inferring the cloud properties from the observations may be viewed as the
+inverse of the problem of predicting the observations from the cloud properties,
+which can be solved using radiative transfer. This, the problem of solving
+the radiative transfer equation in the presence of cloud hydrometeors, is referred
+to as the forward problem.
+
+\section{Formulation}
+
+Mathematically, the inverse problem is formulated as follows: Let $\vec{x} \in
+\mathbb{R}^n$ be an arbitrary vector from the state space $\mathbb{R}^n$. Here
+it is assumed that the vector $\vec{x}$ describes the properties of the observed
+cloud. The space $\mathbb{R}^n$ is the space of all possible cloud
+configurations that could be observed. The interaction of the cloud described by
+the vector $\vec{x}$ interacts with the radiation that is measured by an
+observation system, producing the observation vector $\vec{y}$. It is assumed
+here that a so called forward $\mathbf{F}: \mathbb{R}^n \rightarrow
+\mathbb{R}^m$ exists that allows computing the observation $\mathbf{F}(\vec{x})$
+corresponding to any given state vector $\vec{x}$. The inverse problem
+now consists of determining the state vector $\vec{x}$ corresponding to
+a given observation $\vec{y}$ thus inverting the forward model $\mathbf{F}$.
+
+The general difficulty with inverse problems is that they do not admit
+a unique solution. This is because, at least in atmospheric remote sensing, the
+problem is generally underconstrained. This means that the amount of information
+in the observations $\mathbf{y}$ is not sufficient to uniquely determine a state
+$\mathbf{x}$. Examples are different cloud configurations that result in the
+same measurement vector such as for example a low-level cloud covered by an
+opaque high-level cloud. From the measurement vector $\vec{y}$ alone it is
+impossible to determine a unique state $\vec{x}$ as it will be the same
+independent of the presence of properties of the low-level cloud.
+
+Simultaneously to being underconstrained, the problem may be over constrained.
+This happens if different components of the measurement vector provide seemingly
+contradictory information on the measurement state $\vec{x}$ due errors random
+errors in $\vec{y}$.
+
+\section{Solution}
+
+A common approach in atmospheric remote sensing to solving inverse problems
+is the application of Bayesian statistics. Instead of searching a unique solution
+vector $\vec{x}$ to the inverse problem, the solution is found in the form of a
+probability distribution that describes how likely it is that any of the elements
+of the state space have produced the given observation $\vec{y}$.
+
+The approach that will be presented in the following is known as the optimal estimation
+method (OEM, \textcite{rodgers00}). The method makes three basic assumptions in order
+to solve the inverse problem:
+\begin{enumerate}
+\item That the forward model $\mathbf{F}$ is linear or only weakly non-linear
+\item That the knowledge available about $\vec{x}$ can be described by a Gaussian distribution
+  with mean $\vec{x}_a$ and covariance matrix $\mat{S}_a^{-1}$
+\item That the errors affecting $\mathbf{y}$ are Gaussian with covariance matrix $\mat{S}_\epsilon$
+\end{enumerate}
+
+Under these assumption both the a priori distribution for  $\vec{x}$ as well as the conditional
+probability of observing the measurement $\vec{y}$ given the state $\vec{x}$ are Gaussian:
+\begin{align}
+p(\vec{x}) &= \frac{1}{(2 \pi)^{\frac{-n}{2}} \text{det}(\mat{S}_a)^{-\frac{1}{2}}} \exp \left \{ -\frac{1}{2}(\vec{x} - \vec{x}_a)^T\mat{S}_a^{-1}(\vec{x} - \vec{x}_a ) \right \}\label{eq:px}\\
+p(\vec{y} | \vec{x}) &= \frac{1}{(2 \pi)^{\frac{-m}{2}} \text{det}(\mat{S}_e)^{-\frac{1}{2}}} \exp \left \{-\frac{1}{2}(\vec{x} - \mathbf{F}(\vec{x}))^T\mat{S}_e^{-1}(\vec{x} - \mathbf{F}(x)) \right \}\label{eq:pyx}
+\end{align}
+
+In the Bayesian framework the solution of the inverse problem is simply the a posteriori distribution
+$p(\vec{y} | \vec{x})$ of $\vec{x}$ given the observation vector $\vec{y}$. It is found by applying
+Bayes theorem
+\begin{align}
+  p(\vec{y} | \vec{x}) &= \frac{p(\vec{y} | \vec{x})p(\vec{x})}{p(\mathbf{y})} \\
+  &\propto  p(\vec{y} | \vec{x})p(\vec{x})
+\end{align}
+to the probabilities  (\ref{eq:px}) and (\ref{eq:pyx}).
+
+As a specific solution of the retrieval problem, generally the most likely state is chosen,
+denoted as the maximum a posteriori (MAP) estimator for $\vec{x}$. It can be found by minimizing
+the log-likelihood of the posterior distribution, which has the form:
+\begin{align}\label{eq:oem_cost}
+  -\mathcal{L} \propto (\vec{F}(\vec{x}) - \vec{y})^T\mat{S}_\epsilon^{-1}(\vec{F}(\vec{x}) - \vec{y})
+  (\vec{x} - \vec{x}_a)^T \mat{S}_a^{-1} (\vec{x} - \vec{x}_a)
+\end{align}
+
+Solving the retrieval problem has thus been reduced to minimizing the negative log
+likelihood of the posterior distribution. When the forward model is non-linear, minimizing
+(\ref{eq:oem_cost}) must be performed iteratively using suitable optimization methods such
+as the Gauss-Newton or Levenberg-Marquardt methods \cite{boyd04}.
+
+\section{Error estimation}
+
+When the forward model is approximately linear around the retrieved state $\vec{x}$, the covariance
+of the a posteriori distribution is given by
+\begin{align}
+  \mathbf{S} = \left (\mat{K}^T \mat{S_\epsilon}^{-1} \mat{K} + \mat{S}_a^{-1} \right)^{-1}.
+\end{align}
+Here $\mat{K}$ is the Jacobian of the forward model evaluated at the retrieved state $\vec{x}$.
+

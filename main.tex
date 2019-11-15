@@ -7,6 +7,7 @@
 
 \usepackage{lipsum}           % generating fill-in text for this thesis template
 
+\usepackage{units}
 \usepackage{ifthen}           % if-then-else (to choose PhD/Lic titles)
 
 \usepackage[utf8]{inputenc}   % unicode letters in the input tex document
@@ -22,6 +23,8 @@
 \usepackage{booktabs}         % better table formatting
 
 \usepackage[pdftex]{graphicx} % images
+
+\usepackage{csquotes}
 
 \usepackage{tikz}             % simply amazing graphics library for LaTeX
 \usetikzlibrary{calc}
@@ -81,8 +84,10 @@
 
 % % % Biblatex
 
-\addbibresource{library.bib}  % Bibliography file
+\addbibresource{references.bib}  % Bibliography file
 \renewcommand{\cite}{\parencite}
+\renewcommand\vec[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand\mat[1]{\ensuremath{\boldsymbol{#1}}}
 
 % Remove URLs from common (easy-to-find) entries.
 \AtEveryBibitem{%
@@ -102,6 +107,15 @@
     {}%
 }
 % End Biblatex
+
+\def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
+  \hbox{}\nobreak\hfil --- #1%
+  \parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+
+\newsavebox\mybox
+\newenvironment{aquote}[1]
+  {\savebox\mybox{#1}\begin{quote}}
+  {\signed{\usebox\mybox}\end{quote}}
 
 
 % % % New environments
@@ -188,8 +202,6 @@
 
 
 \begin{document}
-
-\input{frontmatter/standard-cover-page}
 
 \frontmatter                  % roman page numbers
 
@@ -303,23 +315,23 @@
 
 \newcommand{\reformatted}{The paper was reformatted for uniformity, but otherwise is unchanged.}
 
-\part{Appended papers}        % in this part one chapter = one paper
-
-% Example of using the command \paper defined above: 
-\paper{SAT-solving in practice, with a tutorial example from supervisory control}
-      {SAT-solving in practice, with a SCT example}
-      {pap:supervisory}
-      {Koen~Claessen, Niklas~Een, Mary~Sheeran, Niklas~Sörensson, Alexey~Voronov and Knut~Åkesson}
-      {Journal of Discrete Event Dynamic Systems (2009), 19(4): 495--524.}
-      {Reproduced with kind permission from Springer Science+Business Media. \reformatted}
-      {paper-supervisory/body}
-
-\paper{The same paper, inserted second time for illustration}
-      {SAT-solving in practice, with a SCT example}
-      {pap:another-one}
-      {Koen~Claessen, Niklas~Een, Mary~Sheeran, Niklas~Sörensson, Alexey~Voronov and Knut~Åkesson}
-      {Journal of Discrete Event Dynamic Systems (2009), 19(4): 495--524.}
-      {Reproduced with kind permission from Springer Science+Business Media. \reformatted}
-      {paper-supervisory/body}
+%\part{Appended papers}        % in this part one chapter = one paper
+%
+%% Example of using the command \paper defined above: 
+%\paper{SAT-solving in practice, with a tutorial example from supervisory control}
+%      {SAT-solving in practice, with a SCT example}
+%      {pap:supervisory}
+%      {Koen~Claessen, Niklas~Een, Mary~Sheeran, Niklas~Sörensson, Alexey~Voronov and Knut~Åkesson}
+%      {Journal of Discrete Event Dynamic Systems (2009), 19(4): 495--524.}
+%      {Reproduced with kind permission from Springer Science+Business Media. \reformatted}
+%      {paper-supervisory/body}
+%
+%\paper{The same paper, inserted second time for illustration}
+%      {SAT-solving in practice, with a SCT example}
+%      {pap:another-one}
+%      {Koen~Claessen, Niklas~Een, Mary~Sheeran, Niklas~Sörensson, Alexey~Voronov and Knut~Åkesson}
+%      {Journal of Discrete Event Dynamic Systems (2009), 19(4): 495--524.}
+%      {Reproduced with kind permission from Springer Science+Business Media. \reformatted}
+%      {paper-supervisory/body}
 
 \end{document}
