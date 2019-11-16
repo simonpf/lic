@@ -8,7 +8,7 @@ get_ipython().run_line_magic('load_ext', 'autoreload')
 get_ipython().run_line_magic('autoreload', '2')
 import matplotlib.pyplot as plt
 import numpy as np
-plt.style.use("/home/simonpf/src/joint_flight/misc/matplotlib_style.rc")
+plt.style.use("/home/simon/src/joint_flight/misc/matplotlib_style.rc")
 
 
 # In[2]:
@@ -121,12 +121,12 @@ lons_modis[lons_modis >= 0] -= 360
 
 
 from skimage import exposure
-modis_rgb = np.copy(np.transpose(modis.data[[0, 3, 2], i_start : i_end, :], [1, 2, 0]))
+modis_rgb = np.copy(np.transpose(modis.data[[0, 3, 2], i_start : i_end, :], [1, 2, 0]), order = "C")
 for i in range(3):
     x_min = np.nanmin(modis_rgb[:, :, i])
     x_max = np.nanmax(modis_rgb[:, :, i])
     modis_rgb[:, :, i] = (modis_rgb[:, :, i] - x_min) / (x_max - x_min)
-    modis_rgb[:, :, i] = exposure.equalize_adapthist(modis_rgb[:, :, i], clip_limit=0.03)
+    #modis_rgb[:, :, i] = exposure.equalize_adapthist(modis_rgb[:, :, i], clip_limit=0.03)
 
 
 # In[16]:
@@ -234,7 +234,6 @@ y_modis.shape
 
 # In[103]:
 
-
 import pyvista as pv
 from matplotlib.colors import Normalize
 from matplotlib.cm import magma
@@ -244,30 +243,30 @@ from cloud_colocations.plots import grid_to_edges
 i_start = np.where(y_dardar > y_modis.min())[0][0]
 i_end = np.where(y_dardar > y_modis.max())[0][-1]
 rrr = rr[i_start : i_end, :]
-xx = grid_to_edges(np.broadcast_to(lons_dardar[i_start: i_end, np.newaxis], rrr.shape))
-yy = grid_to_edges(np.broadcast_to(lats_dardar[i_start: i_end, np.newaxis], rrr.shape))
-zz = grid_to_edges(np.broadcast_to(z[np.newaxis, :], rrr.shape)) / 1e4
+xx = grid_to_edges(np.broadcast_to(x_dardar[i_start: i_end, np.newaxis], rrr.shape))
+yy = grid_to_edges(np.broadcast_to(y_dardar[i_start: i_end, np.newaxis], rrr.shape))
+zz = grid_to_edges(np.broadcast_to(z[np.newaxis, :], rrr.shape)) / 1e2
 vertices = np.zeros((xx.size, 3))
 vertices[:, 0] = xx.ravel()
 vertices[:, 1] = yy.ravel()
 vertices[:, 2] = zz.ravel()
 dardar_curtain = pv.StructuredGrid(xx, yy, zz)
 dbz =  np.minimum(10.0 * np.log10(np.maximum(rrr[:, :], 1e-3)).T, 20)
+#dbz =  np.copy(yy[1::, 1:].T, order=  "F")
 dardar_curtain.cell_arrays["radar_reflectivity"] = dbz.ravel()
 dardar_curtain.save("dardar.vts")
+dardar_curtain.set_active_scalar("radar_reflectivity")
+
 
 
 # In[107]:
 
 
-y_modis
-
-
 # In[64]:
 
-j_start, j_end = 200, -200
-xx = grid_to_edges(lons_modis[:, j_start : j_end])
-yy = grid_to_edges(lats_modis[:, j_start : j_end])
+j_start, j_end = 0, -1
+xx = grid_to_edges(x_modis[:, j_start : j_end])
+yy = grid_to_edges(y_modis[:, j_start : j_end])
 zz = grid_to_edges(np.zeros(x_modis[:, j_start : j_end].shape))
 vertices = np.zeros((xx.size, 3))
 vertices[:, 0] = xx.ravel()
@@ -277,18 +276,18 @@ modis_surface = pv.StructuredGrid(xx, yy, zz)
 origin = [xx[0, 0], yy[0, 0], zz[0, 0]]
 u = [xx[0, -1], yy[0, -1], zz[0, -1]]
 v = [xx[-1, 0], yy[-1, 0], zz[-1, 0]]
-modis_surface.texture_map_to_plane(origin, u, v, inplace = True)
-#modis_texture = pv.numpy_to_texture(np.array(256 * modis_c0, dtype = np.uint8))
+#modis_surface.texture_map_to_plane(origin, u, v, inplace = True)
+modis_surface.texture_map_to_plane(inplace = True)
+modis_texture = pv.numpy_to_texture(np.array(256 * np.transpose(modis_rgb[:, j_start : j_end, :][::, ::-1, :], [0, 1, 2]), dtype = np.uint8))
 
 
-from matplotlib.cm import magma
-cmap = magma
-norm = lambda x: (x - np.nanmin(x)) / (np.nanmax(x) - np.nanmin(x))
-hue = norm(modis_c0[:, j_start : j_end].ravel())
-colors = (cmap(hue)[:, 0:3] * 255.0).astype(np.uint8)
-image = colors.reshape((xx.shape[0] - 1, xx.shape[1] - 1, 3))
-modis_texture = pv.numpy_to_texture(image[::-1, :, :])
-modis_surface.save("modis.vts")
+#from matplotlib.cm import magma
+#cmap = magma
+#norm = lambda x: (x - np.nanmin(x)) / (np.nanmax(x) - np.nanmin(x))
+#hue = norm(np.copy(y_modis[:, j_start : j_end][::-1, ::-1].ravel(), order = "F"))
+#colors = (cmap(hue)[:, 0:3] * 255.0).astype(np.uint8)
+#image = colors.reshape((xx.shape[0] - 1, xx.shape[1] - 1, 3))
+#modis_texture = pv.numpy_to_texture(image[:, :, :])
 
 
 # In[65]:
@@ -321,13 +320,16 @@ plotter.add_mesh(modis_surface, texture = modis_texture)
 plotter.add_mesh(dardar_curtain, lighting = False, opacity = "sigmoid")
 #plotter.add_mesh(gpm_surface, lighting = False, opacity = 1.0)
 plotter.add_axes()
+plotter.add_bounding_box(color = "black")
+plotter.show_bounds(color = "black")
 plotter.show()
 
 
 f, axs = plt.subplots(1, 2)
-axs[0].pcolormesh(lats_modis, lons_modis, modis_c0)
-axs[0].set_xlim([-20, -30])
-axs[0].set_ylim([-180, -170])
-axs[0].scatter(lats_dardar, lons_dardar, marker = "x", c = "k")
-axs[1].pcolormesh(lats_dardar, z, 10 * np.log10(np.maximum(10 ** -2.5, rr.T)))
-axs[1].set_xlim([-20, -30])
+img = axs[0].pcolormesh(x_modis, y_modis, modis_rgb[:, :, 0], color = np.copy(np.transpose(modis_rgb, [1, 0, 2]), order = "F").reshape(-1, 3))
+img.set_array(None)
+axs[0].scatter(x_dardar, y_dardar, marker = "x", c = "k")
+axs[1].pcolormesh(x_modis, y_modis, modis_rgb[:, :, 2])
+#axs[1].pcolormesh(x_dardar, z, 10 * np.log10(np.maximum(10 ** -2.5, rr.T)))
+
+
