@@ -6,27 +6,33 @@
 \synctex=1                    % instead of "pdflatex -synctex=1 main"
 
 \usepackage{lipsum}           % generating fill-in text for this thesis template
-
+\usepackage[final]{pdfpages}
 \usepackage{units}
 \usepackage{ifthen}           % if-then-else (to choose PhD/Lic titles)
+\usepackage{hyphenat}
 
 \usepackage[utf8]{inputenc}   % unicode letters in the input tex document
 
 \usepackage[T1]{fontenc}      % unicode letters in the output pdf
+\usepackage{parskip}
 
 \usepackage{amssymb, amsmath} % math symbols
 
 \usepackage{lmodern}          % better font
+%\renewcommand{\familydefault}{\sfdefault}
+%\renewcommand{\familydefault}{\sfdefault}
+%\usepackage{kpfonts}
 
 \usepackage{microtype}        % micro typesetting (on errors use draft to disable)
 
 \usepackage{booktabs}         % better table formatting
 
 \usepackage[pdftex]{graphicx} % images
-
 \usepackage{csquotes}
 
 \usepackage{tikz}             % simply amazing graphics library for LaTeX
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
 \usetikzlibrary{calc}
 
 \usepackage[%                 %
@@ -55,14 +61,20 @@
 \usepackage{url}              % handles URLs correctly (e.g. DOI, software links)
 
 \usepackage[%
-  url=true,%                  % print URLs in references, except for the ones removed below
   backend=biber,%             % use biber instead of bibtex
   style=authoryear,%          % cite as: (Author 2008)
-  maxbibnames=10,%            % max names in bibliography
+  citestyle=authoryear-comp,
+  maxbibnames=99,%            % max names in bibliography
   maxcitenames=2,%            % max names in citation
   mincitenames=1,%            % if there are more than maxcitenames, shrink to this
   backref=true,%              % prints page numbers (wrong with \frontmatter and hypertexnames=false)
-  dashed=false                % do not replace repeated author with a dash in bibliography
+  dashed=false,                % do not replace repeated author with a dash in bibliography
+  uniquelist=false,           % suppress attempts to include first names and initials into citations
+  uniquename=false,           % suppress attempts to include first names and initials into citations
+  firstinits=true,             % first names are only displayed as initials in bibliography
+  eprint=false,                %since eprint-links show up
+  date=year
+  %sortcites
 ]{biblatex}                   % Modern bibtex replacement (bibliography mgmt)
 
 \usepackage[%
@@ -125,16 +137,21 @@
 % \newenvironment{env-name}[optional-number-of-args][default-args]{insert-before}{insert-after}
 
 \newenvironment{abstract}{
-  \begin{center}
-    {\bfseries Abstract\par}  % \bfseries - some bold font, \par - end of paragraph (as empty line)
-  \end{center}
-  \quotation                  % extra indent from left and right
+    \thispagestyle{empty}
+    \textbf{Remote sensing of clouds and precipitation using active and passive\\
+    microwave observations}\\
+     Thesis for the degree of Licentiate of Engineering\\
+     Simon Pfreundschuh\\
+     Department of Space, Earth and Environment\\
+     Chalmers University of Technology\\[0.3cm]
+      \textbf{Abstract}\\[0.3]  % \bfseries - some bold font, \par - end of paragraph (as empty line)
+    \par
   \noindent
 }
-{\par\endquotation}
+{\par\\[0.1]}
 
 \newenvironment{keywords}%
-{{\bfseries Keywords:}}%
+{\\[0.2cm]{\bfseries Keywords:}}%
 {\par}%
 % % % End new environments
 
@@ -215,8 +232,8 @@
 \cleardoublepage              % advance the pages
 \phantomsection               % put pdf anchor
 \addcontentsline{toc}{chapter}{Abstract}  % add toc line with target at the last anchor
-\chapter*{Abstract}
-\vspace*{-1cm}                % More space for abstract text
+%\chapter*{Abstract}
+\vspace*{-2cm}                % More space for abstract text
 \input{frontmatter/abstract}
 
 \cleardoublepage              % advance the pages
@@ -230,12 +247,6 @@
 \addcontentsline{toc}{chapter}{List of Publications}  % add toc line with target at the last anchor
 \chapter*{List of Publications}
 \input{frontmatter/publications-list}
-
-\cleardoublepage              % advance the pages
-\phantomsection               % put pdf anchor
-\addcontentsline{toc}{chapter}{List of Acronyms}  % add toc line with target at the last anchor
-\chapter*{List of Acronyms}
-\input{frontmatter/acronyms}
 
 % add Contents to PDF bookmarks, but do not add it to the 'printed' Contents
 \cleardoublepage
@@ -307,31 +318,29 @@
     #4 \par                   % authors again
     \vspace{3pc}
   \end{center}
-  \begin{refsection}          % start of biblatex's refsection for sub-bibliography
-  \input{#7}                  % paper itself, starting from abstract (no title)
-  \printbibliography[heading=subbibintoc] % biblatex bibliography
-  \end{refsection}            % end of biblatex refsection
+  \includepdf[pages=-]{#7}
 }
 
 \newcommand{\reformatted}{The paper was reformatted for uniformity, but otherwise is unchanged.}
 
-%\part{Appended papers}        % in this part one chapter = one paper
-%
-%% Example of using the command \paper defined above: 
-%\paper{SAT-solving in practice, with a tutorial example from supervisory control}
-%      {SAT-solving in practice, with a SCT example}
-%      {pap:supervisory}
-%      {Koen~Claessen, Niklas~Een, Mary~Sheeran, Niklas~Sörensson, Alexey~Voronov and Knut~Åkesson}
-%      {Journal of Discrete Event Dynamic Systems (2009), 19(4): 495--524.}
-%      {Reproduced with kind permission from Springer Science+Business Media. \reformatted}
-%      {paper-supervisory/body}
-%
-%\paper{The same paper, inserted second time for illustration}
-%      {SAT-solving in practice, with a SCT example}
-%      {pap:another-one}
-%      {Koen~Claessen, Niklas~Een, Mary~Sheeran, Niklas~Sörensson, Alexey~Voronov and Knut~Åkesson}
-%      {Journal of Discrete Event Dynamic Systems (2009), 19(4): 495--524.}
-%      {Reproduced with kind permission from Springer Science+Business Media. \reformatted}
-%      {paper-supervisory/body}
+\part{Appended papers}        % in this part one chapter = one paper
+
+\paper{Synergistic radar and radiometer retrievals of ice hydrometeors}
+     {Synergistic radar and radiometer retrievals of ice hydrometeors}
+     {pap:liras}
+     {S.~Pfreundschuh, P.~Eriksson, S.~A.~Buehler, M.~Brath, D.~Duncan, R.~Larsson, R.~Ekelund}
+     {Atmospheric Measurement Techniques Discussions}
+     {In review}
+     {paper\string_liras/amt\string_manuscript}
+
+     \paper{Retrieving ice hydrometeors from radar and sub-millimeter observations: Validation of
+       radiative transfer modeling and sensitivity to cloud microphysics}
+     {Retrieving ice hydrometeor from radar and sub-millimeter observations}
+     {pap:joint_flight}
+     {S.~Pfreundschuh, P.~Eriksson, S.~A.~Buehler, M.~Brath, D.~Duncan, S.~Fox, F.~Ewald, J.~Delanoë}
+     {}
+     {Manuscript in preparation}
+     {paper\string_joint\string_flight/amt\string_manuscript}
+
 
 \end{document}

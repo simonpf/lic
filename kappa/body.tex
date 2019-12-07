@@ -2,171 +2,275 @@
 
 \chapter{Introduction}
 
-Clouds and precipitation affect live on Earth in multiple ways and on multiple
+Clouds and precipitation affect life on Earth in various ways and on multiple
 time scales. On short time scales, weather affects human activity, potentially
-posing threats to transport, agriculture and lives. On longer time scales,
+posing threats to transport, agriculture and lifes. On longer time scales,
 precipitation patterns shape ecosystems and societies while clouds influence the
-global climate system through their interaction with the incoming and outgoing
+global climate by means of their interaction with the incoming and outgoing
 electromagnetic radiation.
 
-As historical evidence suggests, understanding and predicting weather and climate
-has been a human endeavor dating back at least to the formation of the first
-settled communities during the agricultural revolution. This is not surprising
+Understanding and predicting weather and climate has been a human endeavor
+dating back at least to the formation of the first settled communities during
+the agricultural revolution \parencite{hellmann08}. This is easily understood
 considering the dependence of agricultural activity on benign weather patterns.
-Today, this dependency has likely even increased as more and more branches of
-human activity rely on the availability of reliable weather forecasts.
+Today, this dependency may have even increased as more and more branches of
+human activity rely on the availability of accurate weather forecasts.
 
-As the dramatic effects of anthropogenic climate change become more and more
-apparent \cite{coronese19, grinsted19}, the importance of understanding and
-predicting the Earth's changing climate is indisputable. The predicted heating
-under all but the lowest emission scenario is likely to exceed $2\ \unit{^\circ
-  C}$ by the end of the century \cite{collins13}. With this, global mean surface
-air temperature will become higher than what has can be estimated from
-reconstructions of past climate \cite{delmotte13}.This only underlines the
-importance of a thorough understanding of the processes that govern climate
-change on Earth.
+With the dramatic effects of anthropogenic climate change becoming more and more
+apparent \cite{coronese19, grinsted19}, it is indisputable that a firm
+understanding of the Earth's climate system is critical to ensure a safe passage
+into this uncertain future. The predicted heating under all but the lowest
+emission scenarios is likely to exceed $2\ \unit{^\circ C}$ by the end of the
+century \cite{collins13}. With this, global mean surface air temperature will
+likely surpass even the highest temperatures found in reconstructions of the
+climate of the past two million years \cite{delmotte13}. To ensure effective
+adaptation to these drastic changes, comprehensive observation and modeling of
+the Earth's climate is indispensable.
 
-The subject of this thesis are observational methods for clouds using microwave
-sensors. These observations provide valuable information on the state of the
-atmosphere for weather prediction as well as a basis for the evaluation and
-improvement of climate models. The remainder of this introduction aims to give
-an overview over the relevance of observations of clouds for both weather and
-climate prediction and closes with a discussion of currently available
-observation methods. The following chapters then provide an introduction to
-physical and mathematical principles upon which these observations are founded.
-Chapter~\ref{ch:clouds} provides an introduction to cloud formation and
-establishes what properties of clouds can be observed.
-Chapter~\ref{ch:radiative_transfer} introduces the theory of radiative transfer
-which describes how radiation interact with clouds and which is necessary to
-understand the observable effects that clouds have on microwave radiation.
-Finally, Chapter~\ref{ch:inverse_proplems} introduces the mathematical methods
-that are used to infer clouds properties from observations of clouds.
+The subject of this thesis are observational methods for clouds and
+precipitation using microwave radiation. These observations provide a monitoring
+system for the climate on Earth and are crucial ingredients in today's weather
+forecasting systems. In addition to this, they provide a reference for the
+evaluation and improvement of climate models. More specifically, the research
+presented here focuses on observations of clouds at sub-millimeter wavelengths.
+Such observations will become available with the upcoming second generation of
+European operational weather satellites (Metop-SG). The aim of the presented
+research is to develop the methodology and know-how, which is necessary to make effective
+use of these novel observations. The two presented projects focus on the
+combination of observations from passive sub-millimeter radiometers with those
+from a radar and the question how these can be used to more accurately determine
+the properties of clouds.
 
-A brief remark on the terminology: Clouds and precipitation consist of particles
-formed by frozen or liquid water. Hydrometeor is used in the following as a
-collective term to denote either of these forms. Moreover, the adopted viewpoint
-is that precipitation is a byproduct of cloud formation and therefore the terms
-'observations of clouds' or 'cloud observations' are used to denote observations
-of both clouds and precipitation.
+The remainder of this section provides an overview over the relevance of
+observations of clouds for both weather and climate applications and closes with
+a discussion of currently available observation methods. The following chapters
+then provide an introduction to the physical and mathematical principles upon
+which these observations are founded. Chapter~\ref{ch:clouds} provides an
+introduction to cloud formation and establishes what properties of clouds can be
+observed. Chapter~\ref{ch:radiative_transfer} introduces the theory of radiative
+transfer which is necessary to understand the observable effects that clouds
+have on microwave radiation. Chapter~\ref{ch:inverse_problems} introduces the
+mathematical methods that are used to infer relevant properties of clouds from
+remote sensing observations.
+
+A brief note on the terminology: The term ``hydrometeor'' will be used frequently in
+the following chapter to denote the aqueous particles that make up clouds and
+precipitation. Moreover, the viewpoint adopted here is that precipitation is a
+byproduct of cloud formation and therefore the terms \textit{observations of
+  clouds} or \textit{cloud observations} are used to denote observations of both
+clouds and, if present, precipitation.
 
 \section{The role of clouds and precipitation in numerical weather prediction}
 
 Clouds and precipitation are responsible for many of the phenomena that are
-considered as weather. It should therefore be clear that their accurate
-representation in numerical weather prediction (NWP) models is essential for
-reliable forecasts. But clouds, more specifically observations of clouds, can
-impact weather forecasts in another, more nuanced way.
+considered as weather. The most prominent example for this are certainly storms
+which can bring strong winds and heavy precipitation. It is clear that accurate
+representation clouds in numerical weather prediction (NWP) models is an
+essential requirement for reliable forecasts. But clouds, more specifically
+observations of clouds, can impact weather forecasts in another, more nuanced
+way.
 
-Modern forecasting systems make use of satellite observations to determine an
-optimal initial state from which a forecast run is started. This process is
-called data assimilation. In a clear atmosphere, satellite observations from the
-infrared and microwave domain can provide direct information on the temperature
-and humidity field of the atmosphere. When observations are assimilated over
-multiple time steps, sequences of observations can provide additional
-information on wind speeds \cite{geer18}. In a cloudy atmosphere, satellite
-observations still provide information on temperature and humidity, but in
-addition to that the presence of clouds can provide information on the dynamical
-state of the atmosphere.
+The forecasting systems which are used to generate weather forecasts make use of
+satellite observations to determine an optimal initial state from which a
+forecast run is started. This process is called data assimilation. In a clear
+atmosphere, satellite observations from infrared and microwave sensors provide
+direct information on the temperature and humidity field of the atmosphere. By
+assimilating observations over multiple time steps, these observation can
+provide additional information on the dynamical state of the atmosphere
+\cite{geer18}.
 
-Clouds form where warm and moist air is transported upwards in the atmosphere
-by convection. Cloud formation thus acts as a tracer of atmospheric dynamics
-that can provide valuable information on the state of the atmosphere. Indeed,
-owing to recent developments in data assimilation methodology, microwave
-observations sensitive to humidity and clouds have become a main contributor
-to short-term forecast skill \cite{geer17}.
+Clouds form where warm and moist air is transported upwards in the atmosphere.
+Because of this relation to the dynamics of the atmosphere, clouds act as a
+tracer from which a data assimilation system can extract valuable
+information on the state of the atmosphere. Indeed, owing to recent developments
+in data assimilation methodology, microwave observations sensitive to humidity
+and clouds have become a main contributor to short-term forecast skill
+\cite{geer17}.
 
 \section{The role of clouds and precipitation in the climate system}
 
-The main impact of clouds on the climate system is through their interaction
-with the incoming solar radiation and the outgoing long-wave radiation, which
-determines the Earth's energy Budget. In addition to that, clouds form a part
-of the global hydrological cycle in which they deliver water from the atmosphere
-to the surface of the Earth.
+Clouds are an integral part of the global hydrological cycle in which they
+deliver water from the atmosphere to the surface of the Earth. They are also
+tightly coupled to the dynamics of the atmosphere through the effects of latent
+heat and the modulation of atmospheric heating profiles \parencite{bony15}. Their
+principal impact on the climate system, however, is through their interaction
+with the incoming solar radiation and the outgoing long-wave radiation.
 
 \subsection{The global energy budget}
 
 The short-wave radiation emitted by the sun that reaches the earth is the energy
-source that drives the climate system. To remain at a stable temperature the
+source that drives the climate system. To remain at a stable temperature, the
 Earth needs to emit the same amount of incoming energy in the form of outgoing
 long-wave radiation. From an energy balance perspective, clouds have two
-opposing effects on the global energy budget. The first one is a cooling effect
-caused by the reflection of incoming short-wave radiation back to space. The
-second effect is a warming effect caused by the blocking of outgoing long-wave
-radiation that would be emitted to space in a cloud-free atmosphere. Overall,
-the cooling effect of clouds prevails, leading to net cooling effect of clouds.
+opposing effects on the global energy budget: Firstly, a cooling effect caused
+by the reflection of incoming short-wave radiation back to space, and secondly,
+a warming effect caused by the blocking of outgoing long-wave radiation that
+would be emitted to space in a cloud-free atmosphere. Overall, the reflection
+of incoming sunlight dominates, so that clouds exercise a net cooling effect on
+the climate system.
 
 \subsection{Cloud radiative effect and climate sensitivity}
 
 Since both the cooling and warming effects of clouds are relatively strong,
-changes in cloud properties or occurence may potentially cause significant
+changes in cloud properties or occurrence have the potential to cause significant
 feedbacks in a changing climate. These effects, however, are difficult to
-quantify. This is because the strength of their interaction with radiation
-depends on where clouds form in the atmosphere as well as on their microphysical
-properties such as particle phase and size distribution. Furthermore, the
-formation of clouds involves size-ranges beginning at the nanometer scale of
-aerosol particles on which cloud drops form up to several thousands of
-kilometers, which is the size of synoptic-scale cyclones. This wide range of
-size-scales is very difficult to represent in global climate models, which is
-why they have to rely on approximate representations of cloud processes.
+quantify. This is because the strength and the type of the interaction between
+clouds and the incoming or outgoing radiation depends on where these clouds form
+in the atmosphere. In addition to this, they are affected also by the
+microphysical properties of the cloud, e.g. particle shape, phase and size
+distribution.
 
-The cloud feedback is indeed the most uncertain feedback affecting the global
-climate. It therefore contributes significantly to the spread in predicted
-changes in global mean surface temperature observed between different GCMs.
+An additional difficulty in representing the effect of clouds in the general
+circulation models (GCMs) that are used for climate prediction is that their
+formation and evolution involves processes at size-ranges beginning at the
+nanometer scales of aerosol particles on which cloud drops form up to several
+thousands of kilometers, which is the size of synoptic-scale cyclones. Since
+such a range of size-scales cannot be represented explicitly in a GCM, models
+have to rely on approximate representations of cloud processes.
+
+Regarding predictions of future climate, it is indeed the strength of feedback
+effects involving clouds that exhibit the largest spread between different
+models. Clouds are therefore recognized as one of the major sources of
+uncertainty in current climate models and contribute significantly to the spread
+in predicted changes of global mean surface temperature that is observed between
+different GCMs \parencite{boucher13}.
 
 \section{Global observations of clouds}
+\label{sec:observations}
 
 The two previous sections described the relevance of cloud observations for
-weather and climate applications. This section provides a brief review of
-common, global observation methods for clouds. The focus here is put on
-satellite-based observations since these are the only ones that can provide
-observations at global  scales and temporal resolutions. 
+weather and climate applications. From this we now turn to a brief review of
+currently available observation methods for clouds. The focus here is on
+satellite-based systems, since these are the only ones that can simultaneously
+provide observations at global scale and sufficiently high temporal sampling.
 
 \subsection{Frequency domains}
 
-Hydrometeors can be observed from the optical domain down to microwave frequencies
-around $10\ \unit{GHz}$. The strength of their interaction with radiation is determined
-by the relation of their size to the wavelength of the radiation, which is strongest
-when the wavelength is close to the particle size.
+Hydrometeors can be observed from the optical domain down to microwave
+frequencies around $10\ \unit{GHz}$. The strength of their interaction with
+radiation depends on the relation of their size to the wavelength of the
+radiation. The interaction is strongest when the wavelength is close to the
+size of the particles.
 
-In the optical and infrared, cloud droplets and ice crystals are large compared
-to the wavelength of the radiation, so the interaction with a single particle is
-not very strong. However, the large number concentrations of these particles
-make clouds opaque at these wavelengths. This has important implications for
-cloud observations using optical or infrared radiation. Since the cloud is
-opaque the observed radiation is sensitive only to the upper-most regions of the
-cloud. Observational techniques based on these wavelength therefore have no
-direct sensitivity to precipitation and large parts of the water masses in thick
-clouds.
+In the optical domain, cloud droplets and ice crystals are large compared to the
+wavelength of the radiation, which is why they efficiently scatter of radiation
+at these wavelengths. The high number concentrations of these particles present
+in clouds make most of them opaque. For observations in the infrared, the
+wavelength approaches the size of the smallest hydrometeors around $5\ \unit{\mu
+  m}$. Since this further increases the strength of the interaction between the
+cloud particles of the radiation, clouds become even more opaque at these
+frequencies.
+
+This has important implications for cloud observations using optical or infrared
+radiation. Due to the opacity of most clouds, the observed radiation is
+sensitive only to the upper-most regions of the cloud. Observational techniques
+based on these wavelengths have therefore no direct sensitivity to precipitation
+and large parts of the mass of thick clouds.
 
 At microwave frequencies, the wavelength of the radiation is much larger than
-the size of the hydrometeors rendering microwave radiation insensitive to all
-but the largest hydrometeors. The advantage of microwave observation is that
-they can directly sense precipitation, which occurs in clouds that are too thick
-for optical or infrared radiation to penetrate.
+the size of the hydrometeors, which renders it insensitive to all but the
+largest hydrometeors. The advantage of microwave observations, however, is that
+they can directly sense precipitation, which occurs at the base of and below
+clouds that are too thick for optical or infrared radiation to penetrate.
 
-A considerable gap in observation wavelengths between the highest microwave
-frequencies around $2\ \unit{mm}$ and the lowest infrared observations at
-around $15\ \unit{\mu m}$. This gap is due in part to the strength of the
-water vapor continuum in this region of the electromagnetic spectrum, which 
-makes the troposphere invisible from space for large parts of it. Another reason
-are technological difficulties in the development of sensors for these wavelengths.
+An example of this is given in Fig.~\ref{fig:modis_gmi}, which shows simultaneous
+observations of a tropical cloud system in the optical and the microwave
+domain. Each panel shows a true-color composite overlaid with the
+isolines of microwave observations at different wavelengths. Considering the
+lowest microwave frequency (Panel (a)), $10\ \unit{GHz}$, it can be seen that
+the microwave observation exhibits structure in those regions where the optical
+image is saturated, i.e. only the white cloud top is visible. As the frequency
+increases (Panel (b) and (c)), the structures observed in microwave image become
+more complex, since the sensitivity of the radiation to hydrometeors as well as
+water vapor increases. At $183\ \unit{GHz}$ (Panel (d)), the sensitivity to
+atmospheric humidity is so large that the radiation cannot sense the lower
+troposphere anymore. A signal from the cloud is therefore only observed where it
+reaches high enough altitudes for its ice particles to scatter the up-welling thermal
+radiation. We will turn back to this scene for a more detailed discussion of the
+observable effects of clouds and precipitation on microwave radiation in
+Chapter~\ref{ch:radiative_transfer}, which explains the principles of radiative
+transfer in the presence of clouds and precipitation.
 
+\begin{figure}
+\includegraphics[width = \textwidth]{notebooks/modis_gmi.png}
+\caption{The background image in each panel shows true-color composites of
+  observations from the MODIS sensor. Plotted on top are the contours of the
+  radiances of different channels of the GMI \parencite{draper15} radiometer.
+  Dashed, gray lines mark the boundaries of the GMI swath.}
+\label{fig:modis_gmi}
+\end{figure}
+
+
+\subsection{Active and passive sensors}
+
+So far, only observations from passive sensors have been discussed. Passive
+sensors are sensors that measure the radiation emitted by the sun or the earth
+system. The signal observed by passive sensors at wavelengths shorter than
+$5\ \unit{\mu m}$ is dominated by sunlight that was scattered or reflected by
+the Earth or its atmosphere. At longer wavelengths, i.e. in the thermal infrared
+and microwave regions of the electromagnetic spectrum sensors measure the
+thermal emission from the Earth's surface or atmosphere.
+
+In contrast to this, active sensors emit radiation themselves and measure the
+amount of if that is reflected back to the sensor. The two types of active
+sensors that are relevant for studying clouds are radars and lidars. The main
+difference between radar and lidars are the frequencies at which they operate:
+While a radar uses microwaves, lidars operate at infrared, optical or UV
+wavelengths. The advantage of active sensors is that they can provide vertically
+resolved observations and generally have greater sensitivity than their passive
+counterparts. The vertical resolution, however, generally comes at the cost of a
+decreased horizontal coverage. Active sensors therefore typically provide significantly
+lower temporal sampling of specific locations on Earth than their passive counterparts.
+
+As an example for observations from an active sensor, radar observations of the
+tropical scene considered above are displayed in Fig.~\ref{fig:modis_cloudsat}.
+Shown in Panel (a) of the figure are once again the passive observations in the
+optical together with the ground track of the radar observations. The radar
+observations along the ground track are displayed in Panel (b) of the figure.
+The radar observations nicely reveal the intricate vertical structure of the
+cloud. In the northernmost part of the cloud system, the cloud reaches up to
+altitudes of almost $15\ \unit{km}$, a sign of strong convective activity.
+Moreover, a radar signal that reaches down to the surface is observed almost
+everywhere in the cloud, indicating the presence of precipitation.
+
+\begin{figure}
+\includegraphics[width = \textwidth]{notebooks/modis_cloudsat.png}
+\caption{Radar observations of the tropical cloud system shown in
+  Fig.~\ref{fig:modis_gmi}. Panel (a) displays once again the observations from
+  the optical domain together with the ground track of the radar observations
+  (dashed, red line). Panel (b) displays the radar reflectivities observed by
+  the Cloud Profiling Radar on the CloudSat satellite \cite{tanelli08} along the
+  track marked in Panel (a).}
+\label{fig:modis_cloudsat}
+\end{figure}
 \subsection{A look into the future}
 
-Nonetheless, progress is underway to close this frequency gap. The Ice cloud
-imager (ICI) will be flown on the upcoming second generation of European operational
-meteorological satellites (Metop-SG) and will provide observations of the atmosphere
-at frequencies up to $664\ \unit{GHz}$ corresponding to a wavelength of less than
-$0.5\ \unit{mm}$. These observations at sub-millimeter wavelength will considerably
-increase the sensitivity to small particles and lower hydrometeor masses.
+There is a considerable gap in the available wavelengths for the observations of
+clouds between the shortest microwave wavelengths around $2\ \unit{mm}$ and the
+longest infrared wavelength at around $15\ \unit{\mu m}$. This gap is partly
+due to the strength of the water vapor continuum in this region of the
+electromagnetic spectrum, which effectively makes the troposphere invisible for
+large parts of the range, as well as technological difficulties in the
+development of sensors for these wavelengths.
 
-For the observations provided by ICI to be useful the development of additional
-know-how and methodology is required. This is mainly because the microphysical
-properties of ice, i.e. their shape and size affect the observations at these
-high microwave frequencies. The development of methods to infer cloud properties
-such as the mass density of hydrometeors from these observations thus requires
-consideration of these microphysical properties. These developments are also the main
-topic for the PhD project that lead to this thesis.
+Nonetheless, progress is underway to narrow down this wavelength gap. The Ice Cloud
+Imager (ICI, \textcite{buehler12}) is a new type of sensor that will be flown on the upcoming second
+generation of European operational meteorological satellites (Metop-SG). It will
+provide observations of the atmosphere at frequencies up to $664\ \unit{GHz}$
+corresponding to a wavelength of less than $0.5\ \unit{mm}$. These observations
+at sub-millimeter wavelengths will considerably increase the sensitivity to small
+particles and lower hydrometeor masses. Moreover, ICI is expected to also provide
+increased sensitivity to the shape of ice particles.
+
+Since ICI will be the first sensor of its kind to provide observations of clouds
+at sub-millimeter wavelengths, the development of new methodology and know-how
+is required to fully exploit their potential. ICI's sensitivity to the
+microphysical properties of hydrometeors requires improvements of their
+representation in radiative transfer models and better knowledge of their
+characteristic distribution in the atmosphere to accurately simulate and
+understand the impact of ice particles on sub-millimeter observations.
+Contributing to these preparations for the ICI sensor are the principal aims of
+the research project that led to this thesis.
 
 %
 %   .--~*teu.
@@ -189,48 +293,121 @@ topic for the PhD project that lead to this thesis.
 \label{ch:clouds}
 
 Clouds consist of large numbers of water droplets and ice crystals that are
-suspended in the air. When these drops grow sufficiently in mass they
-eventually fall out of the cloud to form precipitation. This chapter gives an
-overview over the processes that lead to the formation of clouds and ultimately
-precipitation. Moreover, the typical properties of the hydrometeors that make up
-clouds and precipitation are presented. This knowledge is required to understand
-the capabilities and limitations of the observational approaches in the remainder
-of this thesis.
+suspended in the air. When these drops grow sufficiently in mass they eventually
+fall out of the cloud to form precipitation. This chapter gives an overview over
+the processes that lead to the formation of clouds and ultimately precipitation.
+Moreover, the typical properties of the hydrometeors that make up clouds and
+precipitation are presented. This knowledge is required to understand the
+capabilities and limitations of the observational approaches considered in the
+remainder of this thesis. The presentation given below is based on the book
+by \textcite{lohmann16}.
 
-It is common to classify cloud types according to their form which is
-representative of the dynamical context in which they form. Such a
-classificlation is of minor relevance for the development of observation methods
-of clouds and is therefore not presented here. Instead, warm and cold clouds are
-distinguished. Warm clouds exist below the $0\ \unit{^\circ C}$ isotherm and
-consist solely of liquid water droplets. Cold clouds extend to above the
-$0\ \unit{^\circ C}$ isotherm consist at least in part of ice particles.
-Although, typically, the liquid phase is present also in cold clouds, this
-classification allows the slightly different formation processes of liquid and
-frozen hydrometeors to be discussed separately. Moreover, also the signature of
-liquid and frozen hydrometeors in remote sensing observations are farily, which
-is why observation methods for different types of hydrometeors are generally
-considered separtely.
+The discussion of clouds presented here focuses on their microphysical
+properties and therefore distinguishes between warm and cold clouds. Warm clouds
+exist below the $0\ \unit{^\circ C}$ isotherm and consist solely of liquid water
+droplets. Cold clouds extend  above the $0\ \unit{^\circ C}$ isotherm and consist
+at least in part of ice particles. Although, typically, the liquid phase is
+present also in cold clouds, this classification allows the slightly different
+formation processes of liquid and frozen hydrometeors to be discussed
+separately. Although it is common to further classify clouds according
+to their structure and the dynamical context of their formation, this
+only indirectly affects their interaction with radiation and is therefore
+neglected here.
 
-This chapter begins with an introduction to phase transitions and how they are
-initiated to form clouds. Then the formation of cloud is discusses separately
-for warm and cold clouds. The chapter closes with a brief discussion of the general
-properties of precipitation.
+This chapter begins with a brief overview over the different hydrometeor types
+and sizes present in clouds. Thereafter, phase transitions are introduced which
+form the basis of cloud formation processes. This is followed by a description
+of the formation and growth processes in warm and cold clouds. The chapter
+closes with a brief discussion of the general properties of precipitation.
 
-\section{Principles of cloud formation}
+\section{Types of hydrometeors}
 
-Cloud hydrometeors form when the water vapor contained in the air undergoes a
-phase change from the gas phase to the liquid or frozen phase. These processes
-are denoted as condensation, for the change from the gas to the liquid phase,
-and deposition, for the change from the gas to the ice phase. Their inverse
-processes, i.e. the change from water in the liquid respectively ice phase to
-the gas phase are denoted as evaporation and resublimation.
+\input{kappa/prism}
+
+\begin{figure}[!hbpt]
+  \centering
+\begin{tikzpicture}
+
+  \clip  (-7.5, 4) rectangle ++(15, 6);
+\draw[black, fill = gray!25] (5,-7) circle (12.5cm);
+  \draw (4, 8) node(i_label) [anchor = west] {\tiny Ice crystals ($D_\text{max} \approx 100\ \unit{\mu m}$)};
+  \draw[->] (i_label.west) -- (3, 8);
+  \draw (4, 7.5) node(s_label) [anchor = north west, align=left] {\tiny Snow flakes, graupel, hail \\[-0.1cm] \tiny ($D_\text{max} \approx 2500\ \unit{\mu m}$)};
+  \draw[->] (s_label.west) to [out=-180, in=90] (3, 6);
+
+  \draw[black, fill = black] (0,8) node(ccn) {} circle (0.00025cm);
+  \draw (-2, 8) node(ccn_label) [anchor = east, align=left] {\tiny Cloud condensation nucleus ($D \approx 0.05\ \unit{\mu m}$)};
+  \draw[->] (ccn_label.east) -- (ccn.west);
+
+  \draw[black, fill = black] (0,7.5) node (sd) {} circle (0.0025cm);
+  \draw (-2, 7.5) node(sd_label) [anchor = east] {\tiny Solution droplet ($D \approx 0.5\ \unit{\mu m}$)};
+ \draw[->] (sd_label.east) -- (sd.west);
+
+  \draw[black, fill = white] (0,7) node (cd) {} circle (0.025cm);
+  \draw (-2, 7) node(cd_label) [anchor = east] {\tiny Cloud droplet ($D \approx 5\ \unit{\mu m}$)};
+  \draw[->] (cd_label.east) -- (cd.west);
+
+  \draw[black, fill = white] (0,6) node (d) {} circle (0.5);
+  \draw (-2, 6.5) node(d_label) [anchor = east] {\tiny Drizzle ($D \approx 100\ \unit{\mu m}$)};
+  \draw[<-] (d.center) + (-0.6 , +0.2)  -- (d_label.east);
+%
+  \draw (-2, 6) node(rd_label) [anchor = east] {\tiny Rain drop ($D \approx 1000\ \unit{\mu m}$)};
+  \draw[black, fill = white] (0,0) node (r) {} circle (5cm);
+
+
+  \begin{scope}[shift = {(2, 7)}, tdplot_main_coords]
+  \pic[shift={(0, 0, 1.5)},
+    /hexagonal prism/height = 0.2,
+    /hexagonal prism/diameter=0.57,
+    /hexagonal prism/rotation angle = 0] {hexi};
+ \pic[/hexagonal prism/height = 0.99, /hexagonal prism/diameter=0.2] {hexi};
+ \end{scope}
+\end{tikzpicture}
+\caption{Types of hydrometeors and their sizes. The figure schematically
+  displays the different particles formed inside clouds. The particles are drawn
+  to scale with an enlargement factor of $1000$.}
+\label{fig:hydrometeors}
+\end{figure}
+
+Liquid cloud droplets form through the activation of  solution
+droplets, which are aerosols that have taken up humidity from their environment.
+The typical sizes of cloud droplets range from $5\ \unit{\mu m}$ to
+$20\ \unit{\mu m}$ and they are the smallest particles that can be found in
+tropospheric clouds. If cloud droplets grow by colliding with other cloud
+droplets they eventual become drizzle drops, which have typical sizes
+starting from $100\ \unit{\mu m}$ and are heavy enough to fall out of the cloud
+and reach the ground. When sufficiently many other droplets are available,
+drizzle droplets can continue to grow to form rain drops which have sizes from
+$1$ to about $4\ \unit{mm}$.
+
+Ice crystals are the frozen counterpart to cloud droplets and typically have
+sizes around $100\ \unit{\mu m}$ but can become significantly larger and even
+fall out of the cloud to reach the ground. Graupel is created when ice crystals
+collide with cloud droplets that freeze upon the ice crystal. This process is
+called riming. When an ice crystal grows to sizes larger than $2.5\ \unit{mm}$
+through riming it is called a hailstone (Ch. 11, \textcite{lohmann16}). Snow flakes
+consist of aggregates of ice crystals and range in sizes from millimeters to
+centimeters.
+
+The different types of hydrometeors and their respective sizes are summarized in
+Fig.~\ref{fig:hydrometeors}. It should be noted that the size given in the
+figure as well as the above paragraphs are only indications of size range
+corresponding to each particle type. Their exact sizes can vary greatly from
+particle to particle and from cloud to cloud.
+
+\section{The physics of cloud formation}
+
+Cloud hydrometeors form when water vapor contained in the air undergoes a phase
+change from the gas phase to the liquid or frozen phase. This process is denoted
+as condensation, for the change from the gas to the liquid phase, and
+deposition, for the change from the gas to the ice phase.
 
 A necessary condition for condensation to occur is that the air is
 supersaturated with respect to liquid water. This means that the partial
 pressure of water vapor exceeds the saturation vapor pressure with respect to
 liquid water. Similarly, supersaturation with respect to the ice phase is
 required for the formation of ice particles. The supersaturation required for
-the formation of clouds is reached when comparably warm and moist air is lifted
+cloud formation  is reached when comparably warm and moist air is lifted
 in the atmosphere. The resulting adiabatic cooling of the air leads to a
 decrease in the saturation vapor pressures of water and ice and the air eventually
 becomes supersaturated.
@@ -248,22 +425,21 @@ process of forming a new, pure cluster of molecules in the stable phase whereas
 heterogeneous nucleation refers to the formation of a cluster of molecules in
 the stable phase on or around a cluster of a different molecular species.
 
-After a sufficiently large nucleus has formed, it will grow due
-to the condensation or deposition of water molecules as long as
-its environment is supersaturated with respect to its phase.
-Eventually, differences in fall velocities between particles
-of different sizes will cause the particles to collide and stick
-together which further accelerates particle growth.
+After a sufficiently large nucleus has formed, it will grow due to the
+condensation or deposition of water molecules as long as its environment is
+supersaturated with respect to its phase. Eventually, differences in fall
+velocities between particles of different sizes will cause them to collide and
+stick together.
 
 Due to the different molecular properties of water and ice, slightly different
 processes are involved in the formation of liquid cloud droplets and ice
-particles, respectively. These together with the corresponding growth mechanism
-are explained in more detail in the following two sections.
+particles. These together with the corresponding growth mechanism are explained
+in more detail in the following two sections.
 
 \section{Warm clouds}
 
-As has been mentioned above, warm clouds are clouds that do not extend above
-the $0\ \unit{^\circ C}$ isotherm and consist solely of liquid cloud droplets.
+As mentioned above, warm clouds are clouds that do not extend above
+the $0\ \unit{^\circ C}$-isotherm and consist solely of liquid cloud droplets.
 
 \subsection{Formation}
 
@@ -273,35 +449,37 @@ liquid phase. Instead, cloud droplets form through the activation of cloud
 condensation nuclei (CCN). CCN are soluble aerosol particles, which take up
 water molecules and grow even in environments that are not super-saturated. The
 droplets which are formed by hygroscopic growth of aerosol particles are called
-solution droplets. For sufficiently high supersaturations, the energy barrier
-for the transition to larger cloud drops vanishes leading to immediate
-condensation of all water molecules onto the droplet that are available in its
-surroundings. The theory describing the activation of CCN and their growth
-to cloud droplets is know as Köhler theory \cite{kohler36}.
+solution droplets (c.f. Fig.~\ref{fig:hydrometeors}). For sufficiently high
+supersaturations, the energy barrier for the transition to larger cloud drops
+vanishes leading to immediate condensation of all water molecules onto the
+droplet which are available in its surroundings. The theory describing the
+activation of CCN and their growth to cloud droplets is known as Köhler theory
+\cite{kohler36}.
 
 \subsection{Growth processes}
 
-The condensation of water molecules onto the newly formed cloud causes a
+The condensation of water molecules onto the newly formed cloud droplet causes a
 gradient in the concentration of water molecules initiating  a diffusive flow
 of water vapor towards the droplet. The water vapor flowing towards the droplet
-condenses onto it making it grow in size and mass. This process is called
+condenses onto it causing it to grow in size and mass. This process is called
 growth by diffusion and condensation. The rate of diffusional growth decreases
-with increasing droplet radius. From sizes around $10$ or $20\ \unit{\mu m}$ and
-up therefore another growth process takes over.
+with increasing droplet radius. For sizes larger than  $20\ \unit{\mu m}$ 
+it has become so inefficient that another growth process takes over.
 
 When the cloud droplets have grown sufficiently in mass, differences in fall
-speed between cloud droplets of different size as well as turbulence may cause
-droplets to collide. If these droplets coalesce the resulting droplet will have
-grown compared to the two colliding droplets. The resulting, larger particle
-will fall even faster down through the cloud. Heavier particles typically are
-also more efficient in collecting other cloud droplets. This illustrates why
+speed between droplets of different size or turbulence may cause droplets to
+collide. If these droplets coalesce the resulting droplet will have grown
+compared to the two colliding droplets. The newly-formed larger particle will
+fall even faster through the cloud. Since heavier particles typically are
+more efficient in collecting other cloud droplets, this illustrates why
 collision-coalescence is a very efficient growth process. Only
 collision-coalescence can explain the onset of rain only 20-30 minutes after the
-formation of a cumulus cloud which can be observed in the atmosphere.
+formation of a cumulus cloud which can be observed in the atmosphere
+(Ch. 7, \textcite{lohmann16}).
 
 \section{Cold clouds}
 
-Cold clouds extend to above $0\ \unit{^\circ C}$ isotherm and are characterized
+Cold clouds extend  above $0\ \unit{^\circ C}$-isotherm and are characterized
 by the presence of frozen hydrometeors.
 
 
@@ -315,24 +493,25 @@ of an ice nucleus directly from the vapor phase. This means that ice particles
 are formed by homogeneous nucleation through the formation of an ice nucleus
 inside an existing cloud or solution droplet and subsequent complete freezing of
 the droplet. Nonetheless, the energy barrier for homogeneous nucleation of ice
-particles remains sufficiently high so that these processes occur only at
+particles remains so high that these processes occur only at
 temperatures below $-36\ \unit{^\circ C}$ for solution droplets and
 $-38\ \unit{^\circ C}$ for cloud droplets.
 
 Heterogeneous nucleation of ice particles involves aerosol particles, so called
-ice nucleating particles (INP), that provide a surface onto which the water
+ice nucleating particles (INP), which provide a surface onto which the water
 molecules can form aggregates with ice-like structure. Heterogeneous nucleation
-is thought to occur both indirectly through the liquid phase as well as directly
-from the gas to the ice phase. Heterogeneous freezing, that is heterogeneous
-nucleation from the liquid phase, occurs when a cloud droplet or a solution
-droplet comes in contact with an INP upon which the droplet freezes.
-Heterogeneous freezing may also occur when water vapor condenses directly onto
-the INP followed by freezing of the liquid nucleus formed on the INP.
+is thought to occur both directly from the gas to the ice phase as well as
+indirectly through an intermediate liquid phase particle. Heterogeneous
+freezing, that is heterogeneous nucleation from the liquid phase, occurs when a
+cloud droplet or a solution droplet comes in contact with an INP upon which the
+droplet freezes. Heterogeneous freezing may also occur when water vapor
+condenses directly onto the INP followed by freezing of the liquid nucleus
+formed on the INP.
 
 Alternatively, heterogeneous nucleation may occur directly from the vapor phase
-by deposition of water molecules directly onto the INP. It is, however, still
-debated whether this process really occurs directly from the vapor phase or whether
-an intermediate liquid nucleus is formed on the INP.
+by deposition of water molecules onto the INP. It is, however, still debated
+whether this process really occurs directly from the vapor phase or whether an
+intermediate liquid nucleus is formed on the INP.
 
 \subsection{Growth processes}
 
@@ -342,48 +521,61 @@ phase these processes have slightly different characteristics as will be
 explained below.
 
 Due to the lower saturation vapor pressure of ice compared to that of water, a
-newly-formed ice nucleus experiences a much higher ratio of supersaturation then
-a cloud droplet would. Because of this, the diffusional growth of ice crystals
-is much faster than that for cloud droplets. The rapid growth of the ice
-particles will deplete the surrounding air of water vapor. This depletion may
-cause the environment to become sub-saturated with respect to water but
-saturated with respect to ice. If this is the case, potentially present supercooled
-cloud droplets evaporate and their molecules deposit onto the ice particles. This is
-known as the Wegener-Bergeron-Findeisen process.
+newly-formed ice nucleus experiences a much higher ratio of supersaturation
+after its formation than a cloud droplet would. This leads to a  diffusional
+growth of ice crystals much faster rates than that of cloud droplets.
+The rapid growth of the ice particles will deplete the surrounding air of water
+vapor. This depletion may cause the environment to become sub-saturated with
+respect to water while it remains saturated with respect to ice. If this is the
+case, potentially present supercooled cloud droplets evaporate and their
+molecules deposit onto the ice particles. This is known as the
+Wegener-Bergeron-Findeisen process.
 
 Similar as for cloud droplets, an ice crystal that grows sufficiently in mass
 eventually starts to sediment. Size differences between different particles as
 well as turbulence may cause particles to collide and potentially stick together
 to form larger particles thus initiating growth by accretion. Accretion is the
-general term for the growth of two hydrometeors caused by a collision and
-resulting in permanent union of the two particles. For ice particles growth by
-accretion can happen in two ways: The collision of two ice particles, called
-aggregation, or the collision of an ice particle with a liquid particle which
-freezes upon contact, called riming. Aggregation produces aggregates of
-snow crystals that, if they don't melt, fall to the ground in the form of snow.
-Particles produced by riming a known as graupel, when their diameter remains below
-$2.5\ \unit{mm}$, and hail for sizes above that.
+general term for the growth of hydrometeors caused by the collision of two
+particles resulting in a permanent union of the two particles. For ice particles,
+growth by accretion can happen in two ways: The collision of two ice particles,
+which is called aggregation, or the collision of an ice particle with a liquid
+particle, which is called riming. Aggregation produces aggregates of snow
+crystals that, if they don't melt, fall to the ground in the form of snow.
+Particles produced by riming are known as graupel, when their diameter remains
+below $2.5\ \unit{mm}$, and hail for sizes above that.
 
 \subsection{Ice habits}
 
 Ice crystals exhibit a fascinating range of different forms. Their crystal
 structure depends on the thermodynamic conditions of their formation. This is
-due to the dependence of the surface tension on the temperature and
-supersaturation as well as the tendency of the shape to minimize this surface
-tension.
+because the anisotropic surface tension of a newly formed ice nucleus depends
+ on the temperature and supersaturation.
 
-A common grouping of ice particles is into pristine ice crystals, aggregates and
-rimed particles. Common shapes for ice crystals are plates and columns. But also
-other shapes such as dendrites, stellar plates or needles can be observed. Snow
-aggregates are usually made up of 10 to 100 or more single crystals. They often
-consist of dendrites and thins plates. Finally, rimed particles are typically
-spherical with densities slightly lower than that of solid ice due air
-inclusions.
+ It is common to distinguish three class of frozen hydrometeors: Pristine ice
+ crystals, aggregates and rimed particles. Common shapes for ice crystals are
+ plates and columns (c.f. Fig~\ref{fig:hydrometeors}). But also other shapes such as
+ dendrites, stellar plates or needles can be observed. Snow aggregates are
+ usually made up of 10 to 100 or more single crystals. They often consist of
+ dendrites and thin plates. Finally, rimed particles are typically spherical
+ with densities slightly lower than that of solid ice due air inclusions.
 
 \section{Precipitation}
 
+Precipitation occurs when the hydrometeors inside a cloud have grown
+sufficiently for their fall speeds to exceed the updraft velocity. Due to the
+ineffectiveness of diffusional growth for cloud droplets and ice crystals at
+larger particle sizes, growth by collision-coalescence and growth by accretion
+are required to form precipitation at the rates observed in the atmosphere.
 
+The exception to this rule is a phenomenon called cloud-less ice precipitation
+which refers to ice particles that grow large enough to sediment and reach
+the ground. This, however, occurs only in very cold climates with clean air such
+as the Arctic and is therefore not relevant at global scales.
 
+Since the transition between suspended cloud hydrometeors and precipitating
+hydrometeors is continuous no explicit distinction will be made in the following
+between the two. Instead ice hydrometeors will be considered as a single species
+of particles include ice crystals, snowflakes, graupel and hail.
 
 \chapter{Microwave radiative transfer in the atmosphere}
 \label{ch:radiative_transfer}
@@ -393,8 +585,8 @@ remotely sensed is their interaction with electromagnetic radiation that can be
 measured from afar using suitable detectors. These interactions are described by
 the theory of radiative transfer. Since this theory is essential for the
 understanding and development of retrieval methods, this section provides an
-introduction to the radiative transfer of microwaves in the atmosphere.
-Particular focus is put on the interaction of radiation with clouds. This
+introduction to radiative transfer of microwaves in the atmosphere.
+The focus is put on the interaction of radiation with clouds. This
 presentation is mostly based on the more comprehensive texts by
 \textcite{thomas02, mischenko02, wallace06}.
 
@@ -403,26 +595,28 @@ presentation is mostly based on the more comprehensive texts by
 Radiative transfer theory describes radiation as monochromatic beams that
 transport radiant energy through the atmosphere. One of the fundamental
 quantities of the theory is the spectral intensity $I_\nu$ defined as the rate
-at which a beam of angular extent $d\omega$ propagating into direction
-$\hat{\vec{n}}$ of frequency $\nu$ transports energy through an infinitesimal
-area $dA$:
+at which a beam consisting of radiation from an infinitesimal frequency interval
+$d\nu$ centered at $\nu$, with angular extent $d\omega$ and propagating into
+direction $\hat{\vec{n}}$, transports energy through an infinitesimal area $dA$:
 \begin{align}\label{eq:spectral_intensity}
   I_\nu = \frac{d^5E}{\cos(\theta) dA\ dt\ d\omega\ d\nu}
 \end{align}
-In addition to that, a monochromatic beam of radiation has a polarization state,
-which describes how the energy flux is split up between the two components of
-the electric field perpendicular to the propagation direction as well as their
-respective phase. The intensity of a beam and its polarization state are
-described by the stokes vector
+where $\cos(\theta)$ is the incidence angle between the surface normal of $A$
+and the direction of propagation of the beam. In addition to that, a
+monochromatic beam of radiation has a polarization state, which describes how
+the energy flux is split up between the two components of the electric field
+perpendicular to the propagation direction as well as their respective phase.
+The intensity of a beam and its polarization state are described by the Stokes
+vector
 \begin{align}
-  \vec{I} &= \left [ \begin{array}{c}I_\nu \\ D \\ Q \\ U\end{array} \right ]
+  \vec{I} &= \left [ \begin{array}{c}I_\nu \\ Q \\ U \\ V\end{array} \right ]
 \end{align}
-The four components $I, D, Q$ and $U$ of the Stokes vector fully characterize an
-electromagnetic plane wave to the extent it that it can be measured using
-traditional detectors. This means that all its measurable quantities can be derived from the
-corresponding stokes vector.
+The four components $I_\nu, Q, U$ and $V$ of the Stokes vector fully characterize an
+electromagnetic plane wave to the extent that it can be measured using
+traditional detectors. This means that all  measurable quantities of the
+radiation can be derived from the corresponding Stokes vector.
 
-The stokes vector can be directly related to the
+The Stokes vector can be directly related to the
 electromagnetic field strength of an electromagnetic plane wave allowing it to
 be derived from the more fundamental theory of electromagnetism. The key
 advantage of radiative transfer theory, however, is that it allows a simplified
@@ -432,12 +626,13 @@ complex to be solved by direct application of the laws of electrodynamics.
 \subsection{Interactions with matter}
 
 The Stokes vector provides a full description of the radiation measured by any
-remote sensing instrument. To model the radiation reaching the detector, a
-suitable description how this radiation is created as well as how it changes as
-it propagates through the atmosphere is required. A common approach in radiative
-transfer theory is to distinguish three fundamental types of such interactions
-of radiation with matter: The emission of radiation, its absorption, and the
-scattering of absorption away from its propagation path.
+passive remote sensing instrument. To model the radiation reaching the detector,
+a suitable description how this radiation is created as well as how it changes
+as it propagates through the atmosphere is required. A common approach in
+radiative transfer theory is to distinguish three fundamental types of such
+interactions of radiation with matter: The emission of radiation, its
+absorption, and the scattering of radiation away from and into its propagation
+path.
 
 \subsubsection{Emission}
 
@@ -451,21 +646,21 @@ particles.
 
 A fundamental concept for the description of emission is that of a black body.
 A black body is a piece of matter that absorbs all incoming radiation. At a
-given temperature $T$, the emission of a black body is isotropic and polarized.
+given temperature $T$, the emission of a black body is isotropic and un-polarized.
 Its spectral intensity is given by Planck's law:
 \begin{align}
   B_\nu(\nu, T) &= \frac{2h\nu^3}{c^2}\frac{1}{\exp ( \frac{h\nu}{k_B T} )- 1}
 \end{align}
 where $c$ is the speed of light in the medium, $h$ is the Planck constant and
-$k_B$ is the Boltzmann constant. The stokes vector describing the emission from
+$k_B$ is the Boltzmann constant. The Stokes vector describing the emission from
 a black body is given by
 \begin{align}
-  \vec{I} &= \left [ \begin{array}{c}B_\nu \\ 0 \\ 0 \\ 0\end{array} \right ]
+  \vec{I} &= \left [ \begin{array}{c}B_\nu \\ 0 \\ 0 \\ 0\end{array} \right ].
 \end{align}
 
 The concept of the black body is used to define the emission from other forms
 of matter using the emissivity vector $\vec{\epsilon}$:
-\begin{align}
+\begin{align}\label{eq:emissivity}
  \vec{I} &= \vec{\epsilon} \cdot B_\nu
 \end{align}
 The main difference between the treatment of emission from a volume compared
@@ -474,7 +669,7 @@ a volume, it is defined per unit length of the path through the volume, while
 for a surface this is not necessary.
 
 Due to the distinct orientation that surfaces have with respect to the viewing
-geometry, the emissivity vector generally depends on the incidence angle. For
+geometry, the emissivity vector generally depends on the emission angle. For
 particles this is generally also the case, but since most particles in the
 atmosphere are randomly oriented it is often neglected. Although black-body
 radiation is unpolarized, emission from general emitters can be polarized. An
@@ -484,25 +679,27 @@ Brewster angle at $53^\circ$.
 \subsubsection{Absorption}
 
 Absorption refers to the process of radiation being converted into internal
-energy of the matter it interacts with. Mathematically, absorption is described
-by an absorption vector $\vec{\alpha}$, defined as the fraction of the incoming
+energy of the matter it interacts with. Mathematically, this process is described
+by the absorption vector $\vec{\alpha}$, defined as the fraction of the incoming
 radiation that is absorbed along an infinitesimal distance $ds$ along the
 propagation path:
 \begin{align}
 \vec{I}_\text{absorbed} &= (\vec{\alpha} \cdot\ ds) \odot \vec{I}
 \end{align}
 Here $\odot$ denotes the element-wise product of the absorption vector and
-the stokes vector $\vec{I}$ of the incoming radiation. Absorption may be
+the Stokes vector $\vec{I}$ of the incoming radiation. Absorption may be
 understood as the inverse process of thermal emission. Formally, this is
 expressed by Kirhoff's  law of radiation
 \begin{align}
-  \vec{\alpha} &= \vec{\epsilon}
+  \vec{\alpha} &= \vec{\epsilon},
 \end{align}
+which states that the absorption vector is identical to the emissivity
+vector defined in Eq.~\ref{eq:emissivity}.
 This law is applicable to all matter in the atmosphere given that it is in a
 state of local thermal equilibrium (LTE). LTE occurs when the density of matter
-is sufficiently high so that the population frequencies of energy states above
-the ground state are determined by thermal collisions rather than the absorption
-of radiation. This decouples the emission of radiation from the radiation field,
+is sufficiently high so that the population rates of energy states above the
+ground state are determined by thermal collisions rather than the absorption of
+radiation. This decouples the emission of radiation from the radiation field,
 allowing the simplified treatment of matter as thermal emitters with the
 emission rates independent of the radiation field. LTE is a valid assumption for
 radiative transfer in the lower atmosphere.
@@ -514,26 +711,30 @@ deviation of parts of the beam from the original propagation path. To first
 order, scattering decreases the intensity of the beam. This particular process
 is referred to as single scattering. As it propagates through the atmosphere,
 the intensity of a beam is decreased by the effects of absorption and single
-scattering. The combination of these two processes is referred to as
-attenuation.
-
-However, as the rate of scattering increases, also the effect of multiple
-scattering has to be taken into account. Multiple scattering occurs when energy
-from other beams scattered into the line of sight causes an increase in the
-intensity of the considered beam.
+scattering. The combination of these two processes is referred to as attenuation
+or extinction. As the rate of scattering increases, also the effect radiation
+that is being scattered into the beam has to be taken into account.
 
 Mathematically, the scattering of a beam of light propagating in direction
 $\vec{n}$ into the direction $\vec{\hat{n}}$ is described by the phase
-matrix $\mat{Z}(\vec{n}, \vec{\hat{n}})$:
+matrix $\mat{Z}(\vec{\hat{n}}, \vec{n})$:
 \begin{align}
   \vec{I}_\text{scattered}(\vec{\hat{n}}) &= \mat{Z}(\vec{\hat{n}}, \vec{n}) \vec{I}(\vec{n})
 \end{align}
-The combined, attenuating effects of scattering and absorption are give by
-the attenuation matrix $\mat{K}$, given by the sum of the absorption vector
-$\vec{a}$ and the fraction of radiation scattered away from the propagation
+The combined, attenuating effects of scattering and absorption are given by
+the attenuation matrix $\mat{K}$, which is the sum of the absorption vector
+$\vec{\alpha}$ and the fraction of radiation scattered away from the propagation
 path:
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
 \begin{align}
-  \vec{K} &= \vec{\alpha} + \int_{\vec{\hat{n}}} d\vec{\hat{n}}\ \mat{Z}(\vec{\hat{n}}, \vec{n})
+  \vec{K} &=
+  \left [ \begin{array}{cccc}
+      \vertbar & \vertbar & \vertbar & \vertbar \\
+      \vec{\alpha} & \vec{0} & \vec{0} & \vec{0} \\
+      \vertbar & \vertbar & \vertbar & \vertbar
+    \end{array} \right ]
+       + \int_{\vec{\hat{n}}} d\vec{\hat{n}}\ \mat{Z}(\vec{\hat{n}}, \vec{n})
 \end{align}
 
 \subsection{The radiative transfer equation}
@@ -542,19 +743,20 @@ The previous section introduced the fundamental interactions of radiation
 with matter and how they are described mathematically in radiative transfer
 theory. Combining the three processes of emission, absorption and scattering,
 the change that a beam undergoes as it travels a distance $ds$ along its
-propagation path through the atmosphere is described the vectorized radiative
+propagation path through the atmosphere is described the vector radiative
 transfer equation (VRTE):
 \begin{align}\label{eq:vrte}
-  \frac{d\vec{I}}{ds} &=
-  -\mat{K}\vec{I} + \vec{\alpha} \cdot B_\nu(T) + \int_{\Omega} d\omega \ \mathbf{Z}(\vec{n}, \vec{\hat{n}}) I(\vec{\hat{n}}).
+  \frac{d\vec{I}(\vec{n})}{ds} &=
+  -\mat{K}\vec{I}(\vec{n}) + \vec{\alpha} \cdot B_\nu(T) + \int_{\hat{\vec{n}}} d\hat{\vec{n}} \ \mathbf{Z}(\vec{n}, \vec{\hat{n}}) \vec{I}(\vec{\hat{n}}).
   \end{align}
-By solving Equation~(\ref{eq:vrte}) the radiation field for an arbitrary atmosphere can
-be computed. What is required for this are the values of temperature, absorption vector
-$\vec{\alpha}$ and phase matrices $\mat{Z}$ throughout the atmosphere as well as a
-suitable method for solving the radiative transfer equation. The values of $\vec{\alpha}$
-and $\mat{Z}$ describe how a specific volume element of the atmosphere absorbs and scatters
-radiation. Their values therefore depend on the concentrations of gases and particulate
-matter in the atmosphere.
+The radiation field for an arbitrary atmosphere can be computed by solving
+Equation~(\ref{eq:vrte}). What is required for this are the values of
+temperature, absorption vector $\vec{\alpha}$ and phase matrices $\mat{Z}$
+throughout the atmosphere as well as a suitable method for solving the radiative
+transfer equation. The values of $\vec{\alpha}$ and $\mat{Z}$ describe how a
+specific volume element of the atmosphere absorbs and scatters radiation. Their
+values therefore depend on the concentrations of gases and particulate matter in
+the atmosphere.
 
 Approximate values of $\vec{\alpha}$ and $\mat{Z}$ for different materials in
 the atmosphere can be measured experimentally or in special cases even derived
@@ -566,35 +768,117 @@ the state of the atmosphere. Together with the methods described in
 Section~\ref{ch:inverse_problems}, this forms the basis of atmospheric
 remote sensing.
 
-\subsection{Long-wave radiative transfer in the atmosphere}
-
-This thesis focuses on observations of the atmosphere at microwave and sub-millimeter
-wavelengths. The specific properties of this frequency domain allow for a number
-of simplifications, that can greatly simplify the solution of the VRTE in
-the atmosphere.
-
-At microwave frequencies, all relevant emission of radiation is due to thermal
-emission from matter in the atmosphere. Emission from the sun is irrelevant at
-these wavelengths. Furthermore, due to the long wavelengths of the radiation,
-scattering by molecules of gases can be neglected. In this case, the integral in
-Eq.~(\ref{eq:vrte}) disappears and it can be solved efficiently by integration
-along the line of sight.
-
-In the presence of clouds, solving the radiative transfer equation becomes
-more complicated and computationally more demanding as it requires solving
-for the whole radiation field instead of solving the VRTE along a single
-beam.
 
 \section{Microwave observations of clouds and precipitation} 
 
-Clouds and precipitation can be observed at microwave frequencies using
-active as well as passive observation techniques.
+To illustrate the application of radiative transfer theory to observations of
+clouds and precipitation, we now turn back to the example cloud scene considered
+in Sec.~\ref{sec:observations}. A simple hydrometeor retrieval has been
+performed to estimate the mass concentrations of frozen and liquid hydrometeors
+in the observed cloud using the radar observations displayed in
+Fig.~\ref{fig:modis_cloudsat}. For simplicity, it was assumed that all
+hydrometeors below (in altitude) the $0\ \unit{^\circ C}$-isotherm are in the
+liquid phase and the ones above in the ice phase. The retrieved mass
+concentrations are displayed in Fig.~\ref{fig:retrieval}. Since a standard
+tropical atmosphere has been assumed to retrieve the cloud properties, the
+melting layer and hence the boundary between liquid and ice hydrometeors is at a
+constant altitude across the whole scene. Although this is certainly not a very
+accurate assumption especially since the radar reflectivities show signs of
+convective activity, it is sufficient to illustrate the basic interaction of
+microwave radiation with clouds and precipitation. The simplified cloud model
+obtained in this way is can now by used to simulate the signatures of liquid and
+frozen hydrometeors in the passive microwave observations.
 
-\subsection{Radar observations}
+\begin{figure}
+\includegraphics[width = \textwidth]{notebooks/retrieval.png}
+\caption{Mass content of frozen (blue) and liquid hydrometeors retrieved
+from the radar reflectivities show in Fig.~\ref{fig:modis_cloudsat}}
+\label{fig:retrieval}
+\end{figure}
 
+\subsection{Liquid hydrometeors}
 
-\subsection{Passive observations}
+We start by investigating the effect of liquid hydrometeors on passive microwave
+observations. For this, all frozen hydrometeors in the scene are ignored and
+observations are simulated of the four passive microwave frequencies considered
+in Fig.~\ref{fig:modis_cloudsat}. The results of these simulations are displayed
+in Fig.~\ref{fig:signals_rain}. Shown is the signal from clouds and precipitation
+defined as the difference in the simulated microwave signal with respect to a cloud-free
+reference observation:
+\begin{align}
+  \Delta y &= y_\text{cloudy} - y_\text{clear}
+\end{align}
+At frequencies as low as $10\ \unit{GHz}$, the signal observed from the rain is positive.
+At these frequencies, rain drops interact with radiation mostly through absorption. Above
+the sea surface, which acts as a cold background, the rain is therefore observed as a
+warm signal. At $37\ \unit{GHz}$, an even stronger positive signal is observed from the
+precipitation. The increase in the strength of the signal is due to the increased absorption
+at shorter wavelengths.
+As the frequency is increased to $89\ \unit{GHz}$, the precipitation signal switches sign
+from  positive to negative. This is because  the sensitivity to water vapor
+causes the background to become warmer, while at the same time the rain drops become
+more effective scatters. The observed rain signal is therefore due to radiation that is being
+scattered away from the line of sight by the rain drops, leading to a negative signal.
 
+At $183\ \unit{GHz}$, finally, the precipitation signal has fully disappeared.
+This is because these frequencies the sensitivity to water vapor is so high that
+the sensor is essentially blind to the lower parts of the troposphere in which
+the rain is located.
+
+\begin{figure}
+\includegraphics[width = \textwidth]{notebooks/signals_rain.pdf}
+\caption{Simulated differences in observed passive radiances with respect to a
+  cloud-free reference observation $\Delta y$ for different microwave
+  frequencies when only liquid hydrometeors are considered.}
+\label{fig:signals_rain}
+\end{figure}
+
+\subsection{Frozen hydrometeors}
+
+To now assess the additional effects of frozen hydrometeors, the simulations are run once
+again but this time including also the frozen hydrometeors in the simulations. The resulting
+cloud signals are displayed in Fig.~\ref{fig:signals_ice}.
+
+First of all, it can be noticed that the precipitations signals observed at
+$10\ \unit{GHz}$ and $37\ \unit{GHz}$ are not affected by the presence of frozen
+hydrometeors. Although frozen precipitating particles are of similar sizes as
+rain drops, differences in their dielectric constants cause the ice to interact
+less strongly with the radiation than water. At $89$ and $183\ \unit{GHz}$,
+however, a clear negative signal from the ice particles is observed. At
+$183\ \unit{GHz}$, all of the observed cloud signal is due to the scattering
+from frozen hydrometeors.
+
+\begin{figure}
+\includegraphics[width = \textwidth]{notebooks/signals_ice.pdf}
+\caption{Simulated differences in observed passive radiances with respect
+  to a cloud-free reference observation $\Delta y$ when both liquid and frozen
+  hydrometeors are considered. Dashed lines show the corresponding signal due to
+  rain only (c.f. Fig.~\ref{fig:signals_rain}).}
+\label{fig:signals_ice}
+\end{figure}
+
+\subsection{Sub-millimeter wavelengths}
+
+Finally, the simple cloud model can be used to demonstrate the benefits of
+sub-millimeter wavelengths for cloud observations. For this, we consider the
+cloud signal observed by four of the channels of the upcoming ICI instrument
+located at $248, 325, 448$ and $664\ \unit{GHz}$. The simulated cloud signals
+are displayed in Fig.~\ref{fig:signals_ici}. The cloud signal in all of the
+considered channels is considerably stronger than that at $183\ \unit{GHz}$. In
+particular in the left part of the scene, the cloud signals at sub-millimeter
+wavelength are significantly stronger than that observed at $183\ \unit{GHz}$.
+Since observations at $183\ \unit{GHz}$ are sensitive only to particles large
+enough to be considered snow, the signal observed here indicates the presence
+ice clouds. This shows that ICI will bring immense benefits for observations
+of clouds using microwave radiation.
+\begin{figure}
+\includegraphics[width = \textwidth]{notebooks/signals_ici.pdf}
+\caption{Signature of clouds in microwave observations. The plot shows the
+  simulated cloud signal as it would be observed by the
+  reference observation when both liquid and frozen hydrometeors are
+  considered.}
+\label{fig:signals_ici}
+\end{figure}
 
 %  d8Nu.  9888c
 %  88888  98888
@@ -612,31 +896,31 @@ active as well as passive observation techniques.
 \chapter{Inverse problems}
 \label{ch:inverse_problems}
 
-The previous chapter introduced the general properties of clouds and  their
-effect on electromagnetic radiation which can be used to observe them. This
-chapter describes the mathematical methods that can be used infer properties
-of clouds from their signatures in the observed electromagnetic radiation.
-Mathematically, this problem can be formulated as an inverse problem. This is
-because inferring the cloud properties from the observations may be viewed as the
-inverse of the problem of predicting the observations from the cloud properties,
-which can be solved using radiative transfer. This, the problem of solving
-the radiative transfer equation in the presence of cloud hydrometeors, is referred
-to as the forward problem.
+The previous chapters provided an overview over the general properties of clouds
+and their interaction with electromagnetic radiation which is used to observe
+them. This chapter describes the mathematical methods that are used to infer
+properties of clouds from their signatures in the observed electromagnetic
+radiation. Mathematically, this task is formulated as an inverse problem. This
+is because inferring the cloud properties from observations can be viewed as the
+inverse of the problem of predicting the observations given the cloud
+properties, which is referred to as the forward problem. How the forward problem
+can be solved using radiative transfer theory has been described in the previous
+chapter. In this chapter we now turn to the task of solving the inverse problem.
 
 \section{Formulation}
 
-Mathematically, the inverse problem is formulated as follows: Let $\vec{x} \in
-\mathbb{R}^n$ be an arbitrary vector from the state space $\mathbb{R}^n$. Here
-it is assumed that the vector $\vec{x}$ describes the properties of the observed
-cloud. The space $\mathbb{R}^n$ is the space of all possible cloud
-configurations that could be observed. The interaction of the cloud described by
-the vector $\vec{x}$ interacts with the radiation that is measured by an
-observation system, producing the observation vector $\vec{y}$. It is assumed
-here that a so called forward $\mathbf{F}: \mathbb{R}^n \rightarrow
-\mathbb{R}^m$ exists that allows computing the observation $\mathbf{F}(\vec{x})$
-corresponding to any given state vector $\vec{x}$. The inverse problem
-now consists of determining the state vector $\vec{x}$ corresponding to
-a given observation $\vec{y}$ thus inverting the forward model $\mathbf{F}$.
+Mathematically, the general inverse problem of remote sensing is formulated as
+follows: Let $\vec{x} \in \mathbb{R}^n$ be an arbitrary vector that describes
+the state of the atmosphere. The vector space of all possible states is referred
+to as the state space and for simplicity assumed to be given by $\mathbb{R}^n$.
+The state atmospheric state $\vec{x}$ is observed through an observations
+system, which produces the observation vector $\vec{y} \in \mathbb{R}^m$.
+Furthermore, it is assumed here that a forward model $\mathbf{F}: \mathbb{R}^n
+\rightarrow \mathbb{R}^m$ exists that allows computing the observation $\vec{y}
+= \mathbf{F}(\vec{x})$ corresponding to any given state vector $\vec{x}$. The
+inverse problem consists of determining the state vector $\vec{x}$ corresponding
+to a given the observation vector $\vec{y}$, hence to invert the forward model
+$\mathbf{F}$.
 
 The general difficulty with inverse problems is that they do not admit
 a unique solution. This is because, at least in atmospheric remote sensing, the
@@ -646,32 +930,32 @@ $\mathbf{x}$. Examples are different cloud configurations that result in the
 same measurement vector such as for example a low-level cloud covered by an
 opaque high-level cloud. From the measurement vector $\vec{y}$ alone it is
 impossible to determine a unique state $\vec{x}$ as it will be the same
-independent of the presence of properties of the low-level cloud.
+independent of the presence or properties of the low-level cloud.
 
-Simultaneously to being underconstrained, the problem may be over constrained.
-This happens if different components of the measurement vector provide seemingly
+Simultaneously to being underconstrained, the problem may be overconstrained.
+This happens when different components of the measurement vector provide seemingly
 contradictory information on the measurement state $\vec{x}$ due errors random
 errors in $\vec{y}$.
 
 \section{Solution}
 
-A common approach in atmospheric remote sensing to solving inverse problems
-is the application of Bayesian statistics. Instead of searching a unique solution
-vector $\vec{x}$ to the inverse problem, the solution is found in the form of a
-probability distribution that describes how likely it is that any of the elements
-of the state space have produced the given observation $\vec{y}$.
+A common approach in atmospheric remote sensing to solve inverse problems is
+the application of Bayesian statistics. This means that instead of searching a
+unique solution to the inverse problem, the solution is found in the form of a
+probability distribution that describes how likely it is that any of the
+elements of the state space has produced a given observation $\vec{y}$.
 
 The approach that will be presented in the following is known as the optimal estimation
 method (OEM, \textcite{rodgers00}). The method makes three basic assumptions in order
 to solve the inverse problem:
 \begin{enumerate}
-\item That the forward model $\mathbf{F}$ is linear or only weakly non-linear
-\item That the knowledge available about $\vec{x}$ can be described by a Gaussian distribution
+\item That the forward model $\mathbf{F}$ is linear or at most weakly non-linear,
+\item that the knowledge available about $\vec{x}$ can be described by a Gaussian distribution,
   with mean $\vec{x}_a$ and covariance matrix $\mat{S}_a^{-1}$
-\item That the errors affecting $\mathbf{y}$ are Gaussian with covariance matrix $\mat{S}_\epsilon$
+\item that the errors affecting $\mathbf{y}$ are Gaussian with covariance matrix $\mat{S}_\epsilon$.
 \end{enumerate}
 
-Under these assumption both the a priori distribution for  $\vec{x}$ as well as the conditional
+Under these assumptions, both the a priori distribution for  $\vec{x}$ as well as the conditional
 probability of observing the measurement $\vec{y}$ given the state $\vec{x}$ are Gaussian:
 \begin{align}
 p(\vec{x}) &= \frac{1}{(2 \pi)^{\frac{-n}{2}} \text{det}(\mat{S}_a)^{-\frac{1}{2}}} \exp \left \{ -\frac{1}{2}(\vec{x} - \vec{x}_a)^T\mat{S}_a^{-1}(\vec{x} - \vec{x}_a ) \right \}\label{eq:px}\\
@@ -679,7 +963,7 @@ p(\vec{y} | \vec{x}) &= \frac{1}{(2 \pi)^{\frac{-m}{2}} \text{det}(\mat{S}_e)^{-
 \end{align}
 
 In the Bayesian framework the solution of the inverse problem is simply the a posteriori distribution
-$p(\vec{y} | \vec{x})$ of $\vec{x}$ given the observation vector $\vec{y}$. It is found by applying
+$p(\vec{x} | \vec{y})$ of $\vec{x}$ given the observation vector $\vec{y}$. It is found by applying
 Bayes theorem
 \begin{align}
   p(\vec{y} | \vec{x}) &= \frac{p(\vec{y} | \vec{x})p(\vec{x})}{p(\mathbf{y})} \\
@@ -692,20 +976,249 @@ denoted as the maximum a posteriori (MAP) estimator for $\vec{x}$. It can be fou
 the log-likelihood of the posterior distribution, which has the form:
 \begin{align}\label{eq:oem_cost}
   -\mathcal{L} \propto (\vec{F}(\vec{x}) - \vec{y})^T\mat{S}_\epsilon^{-1}(\vec{F}(\vec{x}) - \vec{y})
-  (\vec{x} - \vec{x}_a)^T \mat{S}_a^{-1} (\vec{x} - \vec{x}_a)
+  + (\vec{x} - \vec{x}_a)^T \mat{S}_a^{-1} (\vec{x} - \vec{x}_a)
 \end{align}
 
-Solving the retrieval problem has thus been reduced to minimizing the negative log
-likelihood of the posterior distribution. When the forward model is non-linear, minimizing
-(\ref{eq:oem_cost}) must be performed iteratively using suitable optimization methods such
+Solving the retrieval problem has thus been reduced to minimizing the negative log-likelihood of
+the posterior distribution. When the forward model is non-linear, minimizing
+Eq. (\ref{eq:oem_cost}) must be performed iteratively using suitable optimization methods such
 as the Gauss-Newton or Levenberg-Marquardt methods \cite{boyd04}.
 
 \section{Error estimation}
 
-When the forward model is approximately linear around the retrieved state $\vec{x}$, the covariance
-of the a posteriori distribution is given by
-\begin{align}
-  \mathbf{S} = \left (\mat{K}^T \mat{S_\epsilon}^{-1} \mat{K} + \mat{S}_a^{-1} \right)^{-1}.
-\end{align}
-Here $\mat{K}$ is the Jacobian of the forward model evaluated at the retrieved state $\vec{x}$.
+A major advantage of the OEM formalism is that it allows precise characterization of
+the errors that affect the retrieved state. Given below is a derivation of the retrieval
+error from the formulation of the OEM for a linear forward model and in the absence of
+forward model errors. How these results can be generalized to a non-linear forward model
+and the presence of forward modeling errors are outlined afterwards.
 
+\subsection{The idealized case}
+
+We start by defining a retrieval operator $\hat{\vec{x}} = \mathbf{R}(\vec{y})$
+which represents the application of the retrieval to an observation vector
+$\vec{y}$ yielding the retrieved state $\hat{\vec{x}}$. If the forward model is
+assumed to be exact, then $\vec{y}$ can be written as the sum of the forward
+model evaluated at the true state $\vec{x}$ and a random vector of measurement
+noise:
+\begin{align}
+  \mathbf{y} = \mathbf{F}(\vec{x}) + \vec{\epsilon}.
+\end{align}
+Inserting this into $\mathbf{R}$ and linearizing the forward model $\mathbf{F}$ about the a
+priori state $\vec{x}_a$ yields
+\begin{align}
+  \mathbf{R}(\vec{y}) &= \mathbf{R} \left (\mathbf{F}(\vec{x}_a) + \mathbf{K}(\vec{x} - \vec{x}_a) + \vec{\epsilon} \right),
+\end{align}
+where $\mat{K} = \frac{d\mat{F}}{d\vec{x}}$ is the Jacobian of the forward model.
+Now, linearizing the retrieval operator  about $\mathbf{y}$ allows us to write
+\begin{align}
+ \vec{\hat{x}}  &= \mathbf{R}(\mathbf{F}(\vec{x}_a)) +  \frac{d\mathbf{R}}{d\vec{x}}\mathbf{K}(\vec{x} - \vec{x}_a) + \frac{d\mathbf{R}}{d\vec{x}} \epsilon.
+\end{align}
+Assuming an unbiased retrieval operator, i.e. $\mathbf{R}(\mat{F}(\vec{x})) - \vec{x}_a = 0$, the retrieved
+information on the state $\vec{x}$ may be written as
+\begin{align}
+\hat{\vec{x}} - \vec{x}_a &=  \frac{d\mathbf{R}}{d\vec{x}}\mathbf{K}(\vec{x} - \vec{x}_a) + \frac{d\mathbf{R}}{d\vec{x}} \epsilon.
+\end{align}
+The derivative of the retrieval operator $\mathbf{R}$ with respect to the observation vector $\mathbf{y}$
+is referred to as the gain matrix $\mathbf{G}$ and is found to be given by
+\begin{align}
+  \mathbf{G} &= (\mat{K}^T\mat{S}_\epsilon^{-1}\mat{K} + \mat{S}_a^{-1})^{-1} \mat{K}^T\mat{S}^{-1}_\epsilon.
+\end{align}
+We further define the so-called averaging kernel matrix $\mathbf{A} = \mathbf{G}\mathbf{K}$. With
+this, the retrieval error can be written as
+\begin{align}\label{eq:retrieval_error}
+  \hat{\vec{x}} - \vec{x} &=  \underbrace{(\mathbf{A} - \mat{I})(\vec{x} - \vec{x}_a)}_{\text{Smoothing error}}
+  + \underbrace{\frac{d\mathbf{R}}{d\vec{x}} \epsilon}_{\text{Error due to noise}}.
+\end{align}
+This shows that the retrieval error can be written as the sum of two
+contributions. The first term on the right hand side is the so called smoothing
+error. It can be interpreted as the retrieval error that occurs because of the
+limited resolution of the observation system. Its covariance matrix is given by
+\begin{align}
+  \mat{S}_s = (\mat{A} - \mat{I})\mat{S}_\epsilon(\mat{A} - \mat{I}).
+\end{align}
+The second term on the right-hand side of Eq.~(\ref{eq:retrieval_error}) is the error caused by the noise in the observations. Its covariance matrix is given by
+\begin{align}\label{eq:retrieval_noise}
+\mat{S}_m &= \mat{G}_y\mat{S}_\epsilon\mat{G}_y^T.
+\end{align}
+
+\subsection{Handling forward model error and non-linearity}
+
+The derivation presented above assumed an ideal forward model, which is of
+course rarely the case in reality. It is possible to generalize the formulation
+of the retrieval error, if the forward model error can be assumed to be bias
+free and described using a Gaussian distribution with covariance matrix
+$\mat{S}_e$. In this case the general retrieval error can be obtained by simply
+replacing $\mat{S}_\epsilon$ in Eq. (\ref{eq:retrieval_noise}) with
+$\mat{S}_\epsilon + \mat{S}_e$.
+
+If the forward model in non-linear, the forward model in the above derivation has to be
+linearized about the most recent state in the retrieval iteration $\vec{x}_i$. In this
+case the bias term $\mathbf{R}(\mat{F}(\vec{x}_i)) - \vec{x}_a$ can no longer be assumed
+to be zero, and the retrieval results will become biased.
+
+\chapter{Summary of appended papers and outlook}
+\label{ch:appended_papers}
+
+After introducing the physical and mathematical principles of the remote sensing
+of clouds, this chapter now turns towards the research that has been carried out
+under the general aim of preparations for the upcoming ICI sensor. The two
+scientific articles appended to this thesis investigate the concept of combining
+radar and radiometer observations for retrieving ice hydrometeors. The studies
+were carried out within the context of the study ``Scientific Concept Study for
+Wide-Swath High-Resolution Cloud Profiling'' funded by the European Space Agency
+which investigated the potential benefits of a hypothetical cloud radar mission
+flying in constellation with ICI to provide co-located radar and sub-millimeter
+radiometer observations.
+
+\section{Paper A: Synergistic radar and radiometer retrievals of ice hydrometeors}
+
+A synergistic retrieval algorithm is proposed which uses the OEM to retrieve ice
+hydrometeors from combined radar and sub-millimeter radiometer observations. The
+study aims to establish the fundamental synergies of the combined observations,
+i.e. the additional information that can be gained from the observations when
+they are used simultaneously in the retrieval instead of considering them
+separately.
+
+\subsection{Data and methods}
+
+The study uses simulated observations from a high-resolution atmospheric model
+to produce synthetic, co-located observations from a cloud radar and a
+sub-millimeter radiometer. By applying the retrieval to these synthetic
+observations its performance is  assessed. The combined retrieval is compared
+to radar-only and passive-only versions of the retrieval algorithm to establish
+the advantages of the synergistic retrieval approach.
+
+\subsection{Results}
+
+The results obtained in this study show the combination of radar and radiometer
+observations helps to better constrain the microphysical properties of clouds.
+The increased sensitivity to microphysical properties of the cloud reduces
+uncertainties in retrieved ice mass concentrations. In addition to that, the
+combined retrieval showed improved skill in the detection and retrieval of
+liquid clouds.
+
+\subsection{Conclusions}
+
+The increased information content of the combined observations allows an
+additional degree of freedom of the distribution of ice hydrometeors to be
+retrieved, which helps to reduce uncertainties in the retrieved ice mass
+concentrations. This information gain could be attributed to the sub-millimeter
+channels of the ICI sensor. It is therefore concluded that combined retrievals
+involving radar and sub-millimeter radiometer observations are a promising
+approach that may help to reduce uncertainties in retrievals of frozen
+hydrometeors.
+
+\section{Paper B: Relating microphysical and radiometric properties of cloud
+hydrometeors at millimeter and sub-millimeter wavelengths}
+
+The second paper builds upon the first one by applying the synergistic retrieval
+algorithm to observations from a recent flight campaign. One of the few
+currently available sensors that can produce ICI-type sub-millimeter
+observations of clouds is the International Submillimetre Airborne Radiometer
+(ISMAR, \textcite{fox17}), which serves as the airborne demonstrator for the ICI
+sensor. In 2016, ISMAR took part in a joint flight campaign in which three
+research aircraft performed a simultaneous overpass of a mid-latitude cloud
+system and observed it using a wide range of remote sensing sensors. Since cloud
+radars were present on the other two aircraft, the observations made during the
+campaign provide a unique opportunity to apply and test the synergistic
+retrieval algorithm.
+
+\subsection{Data and method}
+
+The study uses observations acquired by the joint flight of the High Altitude
+and Long Range Research Aircraft (HALO), the Facility for Airborne Atmospheric
+Measurements (FAAM) and the Service des Avions Francais Instrumentions pour la
+Recherche en Environnement (SAFIRE) research aircraft. The data consists of
+remote sensing observations from the overpass and in-situ data collected by the
+FAAM aircraft.
+
+The in-situ data available from the flight are used to characterize the
+microphysical properties of the hydrometeors in the observed cloud. Since
+assumption on these properties affect the results of the retrieval, this
+characterization is necessary for their analysis.
+
+Following this, the synergistic retrieval algorithm is applied to the
+observations from the flight. The fits of the forward model to the observations
+are evaluated to check the consistency of the radiative transfer modeling upon
+which the retrieval is based. The retrieved hydrometeor profiles are compared to
+those derived from the in-situ data. Finally, the consistency of the retrieved
+hydrometeor distributions with the other observations from the flight is assessed
+by comparing them to simulations obtained from the retrieval results.
+
+\subsection{Results}
+
+An important result of this study is that the retrieval does achieve a good fit
+to the observations over large parts of the scene, which shows that the applied
+radiative transfer scheme is able to consistently model the observations over
+the wide range of microwave frequencies that was considered here. Two regions in
+which the retrieval does not fit the observations show signs of convective
+activity indicating the presence of a signal from the specific microphysical
+properties of the hydrometeors in the updraft.
+
+Although dependent on the employed particle model, the retrieval results show
+generally good agreement with the in-situ measurements. This dependency,
+however, is found to be consistent with the microphysical characterization
+derived from the in-situ measurements, which speaks in favor of the validity of
+the retrieval method. Moreover, the simulated observations of an additional
+radar operating at a different frequency show good agreement with the real
+observations.
+
+\subsection{Conclusions}
+
+The results presented in this study validate the implementation of the developed
+synergistic retrieval algorithm and thus confirm the results from the first
+study. Moreover, the good fit to the observations obtained in the retrieval
+demonstrates the consistency of the radiative transfer modeling through clouds
+at millimeter and sub-millimeter wavelengths. The results therefore provide an
+important validation case for the modeling of radiative transfer at
+sub-millimeter wavelengths.
+
+\section{Outlook}
+
+\subsection{Relevance of the results}
+
+The focus of the presented research were combined retrievals using radar and
+sub-millimeter radiometer observations. Since such observation are currently not
+available from any ongoing satellite missions, this research is relevant to
+prospective satellite missions involving radar and sub-millimeter observations.
+In addition to that, the second study demonstrated the usefulness of the
+approach also for the application in field campaigns where it may be used to
+validate the radiative transfer modeling of clouds and possibly even to study
+their microphysical properties.
+
+The presented results also have a more general relevance with respect to the
+upcoming ICI mission. Since currently available sub-millimeter observations of
+clouds are limited, the radiative transfer modeling at these frequencies is
+still afflicted with considerable uncertainties. These uncertainties will need
+to be addressed in order to put the observations from ICI to proper use. The
+application of the combined retrieval described in Paper B validated the
+radiative transfer modeling at sub-millimeter wavelengths but also highlighted
+remaining modeling issues regarding the properties of hydrometeors in regions of
+strong convective activity.
+
+\subsection{Future work}
+
+Although the presented work established the basic consistency of radiative
+transfer modeling of clouds at sub-millimeter wavelengths, there remain a number
+of challenges that should be addressed. One of them is certainly the
+representation of the ice particles in radiative transfer simulations at
+sub-millimeter wavelengths. This could be further investigated by making use of
+other field campaigns involving the ISMAR radiometer. Alternatively,
+co-locations of currently available satellite observations could be used as has
+been attempted in \citet{ekelund19}. This work could be further extended by
+including infrared observations and by using directly co-located observations
+such as the ones shown in Sec.~\ref{sec:observations}.
+
+A more specific line of future work that arises from the results of the second
+study is to investigate the radiometric properties of hydrometeors in convective
+updrafts. The observations from the flight campaign could serve as a case study
+to establish the basic radiometric properties of the hydrometeors present in
+these updrafts. These could then be used to investigate the effect of the
+derived properties on already available microwave observations of clouds.
+
+Finally, since the ability to model the radiative transfer at sub-millimeter
+wavelengths is the foundation for understanding and making use of the observations
+that will be provided by ICI, the general consolidation of radiative transfer models at
+sub-millimeter wavelengths remains an essential issue. An important resource for this
+are the air-borne observations from the ISMAR sensor, which should be used for continued
+validation studies for the radiative transfer modeling at these wavelengths.
