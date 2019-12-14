@@ -1,0 +1,356 @@
+#+TITLE: Remote sensing of clouds and @@latex: \\@@ precipitation
+#+SUBTITLE:  using active and passive microwave observations
+#+OPTIONS: H:2 toc:nil
+#+AUTHOR: \textbf{Simon Pfreundschuh}
+#+LaTeX_HEADER: \institute{Department of Space, Earth and Environment}
+#+LaTeX_HEADER: \setbeamerfont{title}{family=\sffamily, series=\bfseries, size=\LARGE}
+#+LATEX_HEADER: \usepackage[style=authoryear, natbib=true, backend=bibtex]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{siunitx}
+#+LATEX_HEADER: \usepackage{picture}
+#+LaTeX_HEADER: \usetheme{chalmers}
+#+LATEX_HEADER: \usepackage{subcaption}
+#+LATEX_HEADER: \DeclareMathOperator\arctanh{arctanh}
+#+LATEX_HEADER: \renewcommand{\vec}[1]{\boldsymbol{#1}}
+#+LATEX_HEADER: \newcommand{\no}{N^*_0}
+#+LATEX_HEADER: \newcommand{\noice}{N^*_{0, \text{ice}}}
+#+LATEX_HEADER: \newcommand{\noicev}{\boldsymbol{N^*_{0, \text{ice}}}}
+#+LATEX_HEADER: \newcommand{\norain}{N^*_{0, \text{rain}}}
+#+LATEX_HEADER: \newcommand{\norainv}{\boldsymbol{N^*_{0, \text{rain}}}}
+#+LATEX_HEADER: \setbeamerfont{title}{family=\sffamily, series=\bfseries, size=\LARGE}
+#+LATEX_HEADER: \setbeamerfont{subtitle}{family=\sffamily, series=\bfseries, size=\large}
+
+** Background and Outline
+
+** Blue marble?
+*** Blue marble?
+    \vspace{-0.4cm}
+    \begin{figure}
+    \centering
+    \includegraphics[width = 0.6\textwidth]{figures/blue_marble}
+    \end{figure}
+
+*** For weather prediction
+    \begin{figure}
+    \centering
+    \includegraphics[width = 0.8\textwidth]{figures/geer.png}
+    \caption{Forecast sensitivity to Observation Impact (FSOI) in the ECMWF
+    operational system \citep{geer17}}
+    \end{figure}
+
+*** Blue marble?
+    \vspace{-0.4cm}
+    \begin{figure}
+    \centering
+    \includegraphics[width = 0.6\textwidth]{figures/blue_marble}
+    \end{figure}
+
+*** For climate monitoring and prediction
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/ipcc.png}
+    \caption{Annual mean top-of-atmosphere cloud radiative effect \citep{boucher13}}
+    \end{figure}
+
+*** For climate monitoring and prediction
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 0.7\textwidth]{figures/duncan.png}
+    \caption{Zonal-mean column-integrated ice mass (IWP) \citep{duncan17}}
+    \end{figure}
+
+*** The way forward
+
+    ICI image
+
+*** My Research
+
+**** Preparations for ICI
+     - Development of methods and tools for the interpretation of the observations
+       provided by ICI
+     - Improving simulations of clouds at sub-millimeter wavelengths
+
+  \begin{alertblock}{Objective}
+    Reducing uncertainties in observations of hydrometeors in the atmosphere.
+  \end{alertblock}
+
+*** Outline
+1. Relevance of cloud observations
+2. Principles of the remote sensing of clouds
+3. Combining active and passive microwave observations for the remote sensing of clouds
+
+** Observing clouds
+
+*** Clouds and precipitation
+**** Clouds
+     - Liquid droplets or ice crystals suspended in the air
+     - Formed by condensation and deposition of water vapor 
+**** Precipitation
+     - Liquid or frozen particles heavy enough to fall out of
+       the cloud
+
+    \vspace{-0.65cm}
+    \begin{figure}
+    \centering
+    \includegraphics[width = 0.9\textwidth]{figures/ice.png}
+    \end{figure}
+
+*** Describing clouds and precipitation
+**** Particle size distribution (PSD)
+   - Number density of particles w.r.t. diameter
+    
+    \begin{figure}
+    \centering
+    \includegraphics[width = 0.7\textwidth]{figures/psds}
+    \end{figure}
+
+*** Observing clouds from space
+    \begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/observations_3d}
+    \end{figure}
+
+*** Observing hydrometeors
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/spectrum.pdf}
+    \end{figure}
+
+*** Observing hydrometeors
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/spectrum_ici.pdf}
+    \end{figure}
+
+
+*** Microwave observations of clouds and precipitation
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/retrieval_2}
+    \end{figure}
+
+*** Microwave observations of clouds and precipitation
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/signals_rain_2}
+    \end{figure}
+
+*** Microwave observations of clouds and precipitation
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/signals_ice_2}
+    \end{figure}
+
+*** Microwave observations of clouds and precipitation
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/signals_ici_2}
+    \end{figure}
+
+*** Brief summary
+**** The need for cloud observations:
+     - Weather forecasting
+     - Climate monitoring and prediction
+**** Current observation techniques:
+     - Optical and IR: Saturate for thick clouds and precipitation
+     - Microwave, $\lambda > \SI{1}{\milli \meter}$: Only sensitive to very large particles (snow + rain)
+
+
+     \begin{alertblock}{The way forward: ICI}
+      Observations at sub-millimeter wavelengths will increase the sensitivity to smaller ice particles
+       and thinner clouds
+     \end{alertblock}
+
+** LIRAS Study
+
+*** Paper 1
+    \textbf{Synergistic radar and radiometer retrievals of ice hydrometeos}
+    @@latex:\\[0.5cm]@@
+    S. Pfreundschuh, P. Eriksson, S. A. Buehler, M. Brath, D. Duncan, R. Larsson,
+    R. Ekelund
+    @@latex:\\[0.2cm]@@
+    \textit{Atmospheric Measurement Techniques Discussions}
+    @@latex:\\[0.2cm]@@
+    \textit{In review}\\
+
+*** Combining active and passive @@latex: \\@@ microwave observations
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/retrieval_scheme}
+    \end{figure}
+
+    \begin{alertblock}{Research question}
+    What information can be gained when active and passive microwave observations are combined to
+    retrieve hydrometeors?
+    \end{alertblock}
+
+*** LIRAS
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/D12_artists_rendition_liras_metop-sg-b.png}
+    \end{figure}
+
+*** Synergistic information content
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/simple_cloud_model}
+    \end{figure}
+
+*** Synergistic information content
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/contours_0}
+    \end{figure}
+
+*** Synergistic information content
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/contours}
+    \end{figure}
+
+*** Retrieval implementation
+**** The problem
+    Want to find vector $\mathbf{x}$ of cloud properties given the
+    observation vector $\mathbf{y}$.
+
+**** Solution
+    Use a forward model $\mathbf{F}: \mathbf{x} \mapsto \mathbf{y}$ and 
+    minimize:
+      \begin{align*}
+        \mathcal{L}(\mathbf{x}) \propto
+        \left(\mathbf{F}(\mathbf{x}) - \mathbf{y} \right )^T
+          \mathbf{S}_e^{-1} 
+          \left ( \mathbf{F}(\mathbf{x}) - \mathbf{y} \right)
+      + \left ( \mathbf{x} - \mathbf{x}_a \right )^T
+        \mathbf{S}^{-1}_a 
+        \left ( \mathbf{x} - \mathbf{x}_a \right )
+      \end{align*}
+      - $\mathbf{S_e}$: Covariance matrix describing the uncertainty in the observations
+      - $\mathbf{S_a}$: Covariance matrix describing the a priori knowledge
+    
+
+*** Model scenes
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/scene_overview}
+    \end{figure}
+
+*** Retrieval results
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/results_scatter_lpa}
+    \end{figure}
+
+*** Retrieval errors
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 1.0\textwidth]{figures/results_box}
+    \end{figure}
+
+*** Summary
+
+    1. Combined active and passive observations constrain two degrees of
+       freedom of the PSD of frozen hydrometeors
+    2. This allows the retrieval to distinguish different hydrometeor species and
+       reduces retrieval uncertainties.
+
+** Joint flight
+
+*** Paper 2
+    \textbf{Retrieving ice hydrometeors from radar and sub-millimeter observations: Validation of radiative transfer modeling and sensitivity to cloud microphysics}
+    @@latex:\\[0.5cm]@@
+    S. Pfreundschuh, P. Eriksson, S. A. Buehler, M. Brath, D. Duncan, S. Fox,
+    F. Ewald, J. Delanoë
+    @@latex:\\[0.2cm]@@
+    \textit{Manuscript in preparation}
+       
+*** Joint flight campaign
+    - Part of the North Atlantic Waveguide and Downstream Impact Experiment (NAWDEX)
+    - Simultaneous cloud overpass of three research aircraft (HALO, FAAM, SAFIRE)
+    - Passive sub-millimeter observations from the International Sub-Millimeter Airborne Radiometer (ISMAR) flown on FAAM
+    - Active and passive microwave observations from the HALO Microwave Package (HAMP) flown on HALO
+
+    \vspace{-0.4cm}
+    \begin{figure}
+    \centering
+    \includegraphics[width = 0.7\textwidth]{figures/flight_paths}
+    \end{figure}
+
+*** Radar observations
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/y_hamp_radar}
+    \end{figure}
+
+*** In-situ measurements
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = 0.5\textwidth]{figures/nevzorov}
+    \end{figure}
+
+*** In-situ measurements
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/psds_raw}
+    \end{figure}
+
+*** Retrieval results
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/iwc_nd}
+    \end{figure}
+
+*** Retrieval results
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/iwc_100}
+    \end{figure}
+
+*** Fitted observations
+
+    \begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{figures/dy_hamp_ismar}
+    \end{figure}
+
+*** Summary
+
+    1. Synergistic retrieval algorithm agrees reasonably well
+       with in-situ data
+    2. Good agreement of the forward model with the observations over
+       large parts of the scene
+    3. Potential signal from convective core in the radar and radiometer
+       observations
+  
+** Conclusions and outlook
+
+*** Conclusions
+    - Established synergies between active and passive microwave observations
+    - Developed and validated a variational retrieval algorithm
+    - Demonstrated consistency of the radiative transfer modeling at sub-millimeter
+      frequencies
+
+*** Outlook
+    - Representation of cloud microphysics remains an important issue
+      for the simulation of sub-millimeter observations
+    - More flight campaign data
+    - Co-located observations from existing satellites
+

@@ -51,7 +51,7 @@ x_dardar = dardar_data["x"][:]
 y_dardar = dardar_data["y"][:]
 z_dardar = dardar_data["z"][:]
 
-i_start = np.where(y_dardar > -600)[0][0]
+i_start = np.where(y_dardar > -600)[0]([0])
 i_end = np.where(y_dardar > 600)[0][0]
 dbz = np.minimum(10 * np.log10(np.maximum(dardar_data["rr"], 10 ** -2.6)), 20)[i_start : i_end]
 

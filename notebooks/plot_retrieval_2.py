@@ -49,6 +49,34 @@ from matplotlib.colors import LogNorm
 from matplotlib.cm import Reds, Blues
 from matplotlib.gridspec import GridSpec
 
+################################################################################
+# y dardar
+################################################################################
+
+f = plt.figure(figsize = (10, 4))
+gs = GridSpec(1, 2, width_ratios = [1.0, 0.03])
+for tick in ax.xaxis.get_major_ticks():
+    tick.label.set_fontsize(14)
+for tick in ax.yaxis.get_major_ticks():
+    tick.label.set_fontsize(14)
+ax.set_ylim([0, 20])
+
+ax = plt.subplot(gs[0, 0])
+img = ax.pcolormesh(lats_dardar, z_dardar / 1e3, y_dardar[i_start : i_end, :].T, norm = Normalize(-26, 20))
+ax.set_xlabel(r"Latitude [$^\circ$]", fontsize = 12)
+ax.set_ylabel(r"Altitude [km]", fontsize = 12)
+ax.set_xlim([-30, -23])
+despine_ax(ax, left = True, bottom = True)
+
+ax = plt.subplot(gs[0, 1])
+cb = plt.colorbar(img, cax = ax)
+cb.ax.tick_params(labelsize=12)
+cb.set_label("Radar reflectivity [dBZ]", fontsize = 12)
+
+plt.tight_layout()
+f.savefig("y_dardar.png", bbox_inches = "tight", dpi = 300)
+plt.show()
+
 def draw_retrieval(gs):
     ax = plt.subplot(gs[1, 0])
     md = rain_md[i_start : i_end]
