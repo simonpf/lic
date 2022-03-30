@@ -77,7 +77,7 @@ plt.tight_layout()
 f.savefig("y_dardar.png", bbox_inches = "tight", dpi = 300)
 plt.show()
 
-def draw_retrieval(gs):
+def draw_retrieval(gs, ice = True):
     ax = plt.subplot(gs[1, 0])
     md = rain_md[i_start : i_end]
     cmap = Reds
@@ -88,10 +88,15 @@ def draw_retrieval(gs):
     img.set_array(None)
 
     md = ice_md[i_start : i_end]
-    cmap = Blues
+    if ice:
+        cmap = Blues
+    else:
+        cmap = Greys
     norm = LogNorm(1e-6, 1e-3)
     hue = cmap(norm(np.copy(md.T).ravel()))
     hue[md.T.ravel() < 1e-6, 3] = 0.0
+    if ice:
+        hue[:, 3] = 0.5
     img = ax.pcolormesh(lats_dardar, z / 1e3, md.T, color = hue, cmap = Blues)
     img.set_array(None)
 
@@ -204,7 +209,7 @@ ax.set_axis_off()
 labels = [r"$10\ \unit{GHz}$", r"$37\ \unit{GHz}$", r"$89\ \unit{GHz}$", r"$183\ \unit{GHz}$"]
 ax.legend(handles = handles, labels = labels, loc = "center left", fontsize = 12)
 
-draw_retrieval(gs)
+draw_retrieval(gs, ice = False)
 
 plt.tight_layout()
 f.savefig("signals_rain_2.pdf", bbox_inches = "tight")
